@@ -1,11 +1,12 @@
 package br.com.fiap.restaurante.model;
 
+import br.com.fiap.restaurante.model.context.DiasFuncionamento;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.sql.Time;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,13 +47,55 @@ public class Restaurante {
     private String enderecoCompleto;
 
     @Column(name = "horario_abertura")
-    private LocalDateTime horarioAbertura;
+    private LocalTime horarioAbertura;
 
     @Column(name = "horario_fechamento")
-    private LocalDateTime horarioFechamento;
+    private LocalTime horarioFechamento;
 
     @Column(name = "tolerancia")
     private Time tolerancia;
+
+    @Column(name = "dias_tolerancia")
+    private Set<DiasFuncionamento> diasTolerancia;
+
+    public Restaurante() {
+    }
+
+    public Restaurante(
+            Set<Avaliacao> avaliacoes,
+            Set<Reserva> reservas,
+            Especialidade especialidade,
+            Integer capacidadePessoas,
+            String nome,
+            Integer latitude,
+            Integer longitude,
+            String enderecoCompleto,
+            LocalTime horarioAbertura,
+            LocalTime horarioFechamento,
+            Time tolerancia,
+            Set<DiasFuncionamento> diasTolerancia
+    ) {
+        this.avaliacoes = avaliacoes;
+        this.reservas = reservas;
+        this.especialidade = especialidade;
+        this.capacidadePessoas = capacidadePessoas;
+        this.nome = nome;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.enderecoCompleto = enderecoCompleto;
+        this.horarioAbertura = horarioAbertura;
+        this.horarioFechamento = horarioFechamento;
+        this.tolerancia = tolerancia;
+        this.diasTolerancia = diasTolerancia;
+    }
+
+    public Set<DiasFuncionamento> getDiasTolerancia() {
+        return diasTolerancia;
+    }
+
+    public void setDiasTolerancia(Set<DiasFuncionamento> diasTolerancia) {
+        this.diasTolerancia = diasTolerancia;
+    }
 
     public Long getId() {
         return id;
@@ -126,19 +169,19 @@ public class Restaurante {
         this.enderecoCompleto = enderecoCompleto;
     }
 
-    public LocalDateTime getHorarioAbertura() {
+    public LocalTime getHorarioAbertura() {
         return horarioAbertura;
     }
 
-    public void setHorarioAbertura(LocalDateTime horarioAbertura) {
+    public void setHorarioAbertura(LocalTime horarioAbertura) {
         this.horarioAbertura = horarioAbertura;
     }
 
-    public LocalDateTime getHorarioFechamento() {
+    public LocalTime getHorarioFechamento() {
         return horarioFechamento;
     }
 
-    public void setHorarioFechamento(LocalDateTime horarioFechamento) {
+    public void setHorarioFechamento(LocalTime horarioFechamento) {
         this.horarioFechamento = horarioFechamento;
     }
 
