@@ -20,7 +20,7 @@ public class ReadResturanteService extends RestauranteService {
         this.repository = repository;
     }
 
-    public RestauranteDTO find(Long id) {
+    public RestauranteDTO findById(Long id) {
         Restaurante restaurante = repository.findById(id).orElseThrow();//TODO implementar error para 'not find'
         return toRestauranteDTO(restaurante);
     }

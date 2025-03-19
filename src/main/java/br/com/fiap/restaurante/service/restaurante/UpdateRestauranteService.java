@@ -4,7 +4,9 @@ import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
 import br.com.fiap.restaurante.repository.RestauranteRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UpdateRestauranteService extends RestauranteService {
 
     RestauranteRepository repository;
