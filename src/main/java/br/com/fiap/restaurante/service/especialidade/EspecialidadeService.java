@@ -1,43 +1,25 @@
 package br.com.fiap.restaurante.service.especialidade;
 
+import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
 import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
+import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.model.Restaurante;
 
-public abstract class RestauranteService {
+public class EspecialidadeService {
 
-
-    public static Restaurante toEntity(RestauranteDTO restauranteDTO) {
-        return new Restaurante(
-                restauranteDTO.avaliacoes(),
-                restauranteDTO.reservas(),
-                restauranteDTO.especialidade(),
-                restauranteDTO.capacidadePessoas(),
-                restauranteDTO.nome(),
-                restauranteDTO.latitude(),
-                restauranteDTO.longitude(),
-                restauranteDTO.enderecoCompleto(),
-                restauranteDTO.horarioAbertura(),
-                restauranteDTO.horarioFechamento(),
-                restauranteDTO.tolerancia(),
-                restauranteDTO.diasFuncionamentos()
+    public static Especialidade toEntity(EspecialidadeDTO especialidadeDTO) {
+        return new Especialidade(
+                especialidadeDTO.nome(),
+                especialidadeDTO.descricao(),
+                null
         );
     }
 
-    public static RestauranteDTO toRestauranteDTO(Restaurante restaurante) {
-        return new RestauranteDTO(
-                restaurante.getId(),
-                restaurante.getAvaliacoes(),
-                restaurante.getReservas(),
-                restaurante.getEspecialidade(),
-                restaurante.getCapacidadePessoas(),
-                restaurante.getNome(),
-                restaurante.getLatitude(),
-                restaurante.getLongitude(),
-                restaurante.getEnderecoCompleto(),
-                restaurante.getHorarioAbertura(),
-                restaurante.getHorarioFechamento(),
-                restaurante.getDiasTolerancia(),
-                restaurante.getTolerancia()
+    public static EspecialidadeDTO toEspecialidadeDTO(Especialidade especialidade) {
+        return new EspecialidadeDTO(
+                especialidade.getId(),
+                especialidade.getNome(),
+                especialidade.getDescricao()
         );
     }
 }

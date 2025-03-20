@@ -1,5 +1,6 @@
 package br.com.fiap.restaurante.dto.restaurante;
 
+import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
 import br.com.fiap.restaurante.model.Avaliacao;
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.model.Reserva;
@@ -13,7 +14,7 @@ public record RestauranteDTO(
         Long id,
         Set<Avaliacao> avaliacoes,
         Set<Reserva> reservas,
-        Especialidade especialidade,
+        EspecialidadeDTO especialidade,
         Integer capacidadePessoas,
         String nome,
         Integer latitude,
@@ -22,6 +23,6 @@ public record RestauranteDTO(
         LocalTime horarioAbertura,
         LocalTime horarioFechamento,
         Set<DiasFuncionamento> diasFuncionamentos,
-        Time tolerancia
+        LocalTime tolerancia
 ) {
 }

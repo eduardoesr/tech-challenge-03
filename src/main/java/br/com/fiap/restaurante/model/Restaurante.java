@@ -53,7 +53,7 @@ public class Restaurante {
     private LocalTime horarioFechamento;
 
     @Column(name = "tolerancia")
-    private Time tolerancia;
+    private LocalTime tolerancia;
 
     @Column(name = "dias_tolerancia")
     private Set<DiasFuncionamento> diasTolerancia;
@@ -72,7 +72,7 @@ public class Restaurante {
             String enderecoCompleto,
             LocalTime horarioAbertura,
             LocalTime horarioFechamento,
-            Time tolerancia,
+            LocalTime tolerancia,
             Set<DiasFuncionamento> diasTolerancia
     ) {
         this.avaliacoes = avaliacoes;
@@ -185,11 +185,11 @@ public class Restaurante {
         this.horarioFechamento = horarioFechamento;
     }
 
-    public Time getTolerancia() {
+    public LocalTime getTolerancia() {
         return tolerancia;
     }
 
-    public void setTolerancia(Time tolerancia) {
+    public void setTolerancia(LocalTime tolerancia) {
         this.tolerancia = tolerancia;
     }
 }

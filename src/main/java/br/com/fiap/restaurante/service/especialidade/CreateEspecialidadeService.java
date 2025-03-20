@@ -1,60 +1,41 @@
-package br.com.fiap.restaurante.service.restaurante;
+package br.com.fiap.restaurante.service.especialidade;
 
+import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
+import br.com.fiap.restaurante.dto.especialidade.RequestUpdateEspecialidadeDTO;
 import br.com.fiap.restaurante.dto.restaurante.RequestCreateRestauranteDTO;
 import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
-import br.com.fiap.restaurante.error.service.NotFoundServiceError;
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.model.Restaurante;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
-import br.com.fiap.restaurante.repository.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateRestauranteService extends RestauranteService {
+public class CreateEspecialidadeService extends EspecialidadeService {
 
-    RestauranteRepository repository;
-    EspecialidadeRepository repositoryEspecialidade;
+    EspecialidadeRepository repository;
 
     @Autowired
-    public CreateRestauranteService(
-            RestauranteRepository repository,
-            EspecialidadeRepository repositoryEspecialidade
+    public CreateEspecialidadeService(
+            EspecialidadeRepository repository
     ) {
         this.repository = repository;
-        this.repositoryEspecialidade = repositoryEspecialidade;
     }
 
-    public RestauranteDTO create(RequestCreateRestauranteDTO dto) {
-        if(!repositoryEspecialidade.existsById(dto.especialidadeId())) {
-            throw new NotFoundServiceError("CreateRestaurante: identificador da especialidade não encontrado");
-        }
+    public EspecialidadeDTO create(RequestUpdateEspecialidadeDTO dto) {
 
-        Restaurante restaurante = toEntity(
-                dto,
-                repositoryEspecialidade.getReferenceById(dto.especialidadeId())
-        );
+        Especialidade especialidade = toEntity(dto);
 
-        return toRestauranteDTO(repository.save(restaurante));
+        return toEspecialidadeDTO(repository.save(especialidade));
     }
 
-    public static Restaurante toEntity(
-            RequestCreateRestauranteDTO restauranteDTO,
-            Especialidade especialidade
+    public static Especialidade toEntity(
+            RequestUpdateEspecialidadeDTO especialidadeDTO
     ) {
-        return new Restaurante(
-                null,
-                null,
-                especialidade,
-                restauranteDTO.capacidadePessoas(),
-                restauranteDTO.nome(),
-                restauranteDTO.latitude(),
-                restauranteDTO.longitude(),
-                restauranteDTO.enderecoCompleto(),
-                restauranteDTO.horarioAbertura(),
-                restauranteDTO.horarioFechamento(),
-                restauranteDTO.tolerancia(),
-                restauranteDTO.diasFuncionamentos()
+        return new Especialidade(
+                especialidadeDTO.nome(),
+                especialidadeDTO.descricao(),
+                null
         );
     }
 }

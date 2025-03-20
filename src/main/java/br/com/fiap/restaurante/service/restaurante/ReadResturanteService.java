@@ -1,6 +1,7 @@
 package br.com.fiap.restaurante.service.restaurante;
 
 import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
+import br.com.fiap.restaurante.error.service.NotFoundServiceError;
 import br.com.fiap.restaurante.model.Restaurante;
 import br.com.fiap.restaurante.repository.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ReadResturanteService extends RestauranteService {
     }
 
     public RestauranteDTO findById(Long id) {
-        Restaurante restaurante = repository.findById(id).orElseThrow();//TODO implementar error para 'not find'
+        Restaurante restaurante = repository.findById(id).orElseThrow(() -> new NotFoundServiceError("ReadResturante: identificador não encontrado"));//TODO implementar error para 'not find'
         return toRestauranteDTO(restaurante);
     }
 

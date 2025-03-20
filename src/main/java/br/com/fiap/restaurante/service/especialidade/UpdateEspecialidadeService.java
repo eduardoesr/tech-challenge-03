@@ -1,5 +1,7 @@
 package br.com.fiap.restaurante.service.especialidade;
 
+import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
+import br.com.fiap.restaurante.dto.especialidade.RequestUpdateEspecialidadeDTO;
 import br.com.fiap.restaurante.dto.restaurante.RequestUpdateRestauranteDTO;
 import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
 import br.com.fiap.restaurante.error.service.NotFoundServiceError;
@@ -10,40 +12,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateRestauranteService extends RestauranteService {
+public class UpdateEspecialidadeService extends EspecialidadeService {
 
-    RestauranteRepository repository;
-    EspecialidadeRepository especialidadeRepository;
+    EspecialidadeRepository repository;
 
     @Autowired
-    public UpdateRestauranteService(
-            RestauranteRepository repository,
-            EspecialidadeRepository especialidadeRepository
+    public UpdateEspecialidadeService(
+            EspecialidadeRepository repository
     ) {
         this.repository = repository;
-        this.especialidadeRepository = especialidadeRepository;
     }
 
-    public RestauranteDTO update(Long id, RequestUpdateRestauranteDTO restauranteDTO) {
-        if(!especialidadeRepository.existsById(restauranteDTO.especialidadeId())) {
-            throw new NotFoundServiceError("UpdateRestaurante: identificador da especialidade não existe");
-        }
+    public EspecialidadeDTO update(Long id, RequestUpdateEspecialidadeDTO especialidadeDTO) {
         try {
-            var restaurante = repository.getReferenceById(id);
-            restaurante.setEspecialidade(especialidadeRepository.getReferenceById(restauranteDTO.especialidadeId()));
-            restaurante.setCapacidadePessoas(restauranteDTO.capacidadePessoas());
-            restaurante.setNome(restauranteDTO.nome());
-            restaurante.setLatitude(restauranteDTO.latitude());
-            restaurante.setLongitude(restauranteDTO.longitude());
-            restaurante.setEnderecoCompleto(restauranteDTO.enderecoCompleto());
-            restaurante.setHorarioAbertura(restauranteDTO.horarioAbertura());
-            restaurante.setHorarioFechamento(restauranteDTO.horarioFechamento());
-            restaurante.setDiasTolerancia(restauranteDTO.diasFuncionamentos());
-            restaurante.setTolerancia(restauranteDTO.tolerancia());
-            return toRestauranteDTO(repository.save(restaurante));
+            var especialidade = repository.getReferenceById(id);
+            especialidade.setNome(especialidadeDTO.nome());
+            especialidade.setDescricao(especialidadeDTO.descricao());
+            return toEspecialidadeDTO(repository.save(especialidade));
         } catch (EntityNotFoundException e) {
             //TODO implementar erros personalizados de EntityNotFoundException
-            throw new NotFoundServiceError("UpdateRestaurante: identificador do restaurante não encontrado");
+            throw new NotFoundServiceError("UpdateEspecialidade: identificador da especialidade não encontrada");
         }
     }
 }

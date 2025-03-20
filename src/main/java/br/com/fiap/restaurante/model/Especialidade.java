@@ -24,6 +24,15 @@ public class Especialidade {
     @Column(name = "descricao")
     private String descricao;
 
+    public Especialidade() {
+    }
+
+    public Especialidade(String descricao, String nome, Set<Restaurante> restaurantes) {
+        this.descricao = descricao;
+        this.nome = nome;
+        this.restaurantes = restaurantes;
+    }
+
     public Long getId() {
         return id;
     }

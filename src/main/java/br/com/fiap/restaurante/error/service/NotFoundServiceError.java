@@ -1,6 +1,6 @@
 package br.com.fiap.restaurante.error.service;
 
-public class NotFoundService extends RuntimeException {
-    public NotFoundService(String message) {super(message);
+public class NotFoundServiceError extends RuntimeException {
+    public NotFoundServiceError(String message) {super(message);
     }
 }

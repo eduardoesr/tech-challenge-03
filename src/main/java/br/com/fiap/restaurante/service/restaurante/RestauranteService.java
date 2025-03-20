@@ -2,6 +2,7 @@ package br.com.fiap.restaurante.service.restaurante;
 
 import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
 import br.com.fiap.restaurante.model.Restaurante;
+import br.com.fiap.restaurante.service.especialidade.EspecialidadeService;
 
 public abstract class RestauranteService {
 
@@ -9,7 +10,7 @@ public abstract class RestauranteService {
         return new Restaurante(
                 restauranteDTO.avaliacoes(),
                 restauranteDTO.reservas(),
-                restauranteDTO.especialidade(),
+                EspecialidadeService.toEntity(restauranteDTO.especialidade()),
                 restauranteDTO.capacidadePessoas(),
                 restauranteDTO.nome(),
                 restauranteDTO.latitude(),
@@ -27,7 +28,7 @@ public abstract class RestauranteService {
                 restaurante.getId(),
                 restaurante.getAvaliacoes(),
                 restaurante.getReservas(),
-                restaurante.getEspecialidade(),
+                EspecialidadeService.toEspecialidadeDTO(restaurante.getEspecialidade()),
                 restaurante.getCapacidadePessoas(),
                 restaurante.getNome(),
                 restaurante.getLatitude(),

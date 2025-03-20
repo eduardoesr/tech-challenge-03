@@ -1,5 +1,9 @@
 package br.com.fiap.restaurante.service.restaurante;
 
+import br.com.fiap.restaurante.dto.restaurante.RequestCreateRestauranteDTO;
+import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
+import br.com.fiap.restaurante.error.service.NotFoundServiceError;
+import br.com.fiap.restaurante.model.Restaurante;
 import br.com.fiap.restaurante.repository.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,8 @@ public class DeleteRestauranteService extends RestauranteService {
     public void deleteById(Long id) {
         if(repository.existsById(id)){
             repository.deleteById(id);
+            return;
         }
+        throw new NotFoundServiceError("DeleteRestaurante: identificador não foi encontrado");
     }
 }

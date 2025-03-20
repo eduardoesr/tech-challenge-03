@@ -5,10 +5,11 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Set;
 
-public record RequestCreateEspecialidadeDTO(
+public record RequestCreateRestauranteDTO (
         @NotNull
         Long especialidadeId,
         @NotNull
