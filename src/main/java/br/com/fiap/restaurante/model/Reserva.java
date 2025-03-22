@@ -35,6 +35,23 @@ public class Reserva {
     @Column(name = "status_reserva")
     private StatusReserva statusReserva;
 
+    public Reserva(
+            String nomeCliente,
+            Integer quantidadePessoas,
+            LocalDateTime dataReserva,
+            LocalDateTime dataSaida,
+            StatusReserva statusReserva) {
+        this.nomeCliente = nomeCliente;
+        this.quantidadePessoas = quantidadePessoas;
+        this.dataReserva = dataReserva;
+        this.dataSaida = dataSaida;
+        this.statusReserva = statusReserva;
+    }
+
+    public Reserva() {
+
+    }
+
     public Long getId() {
         return id;
     }
