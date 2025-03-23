@@ -25,12 +25,35 @@ public class Avaliacao {
     @Column(name = "nome_cliente")
     private String nomeCliente;
 
+    @Column(name = "data_update")
+    private LocalDateTime dataUpdate;
+
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "valor_avaliacao")
     private ValorAvaliacao valorAvaliacao;
+
+    public Avaliacao() {
+    }
+
+    public Avaliacao(Restaurante restaurante, String comentario, String nomeCliente, LocalDateTime dataUpdate, LocalDateTime dataCriacao, ValorAvaliacao valorAvaliacao) {
+        this.restaurante = restaurante;
+        this.comentario = comentario;
+        this.nomeCliente = nomeCliente;
+        this.dataUpdate = dataUpdate;
+        this.dataCriacao = dataCriacao;
+        this.valorAvaliacao = valorAvaliacao;
+    }
+
+    public LocalDateTime getDataUpdate() {
+        return dataUpdate;
+    }
+
+    public void setDataUpdate(LocalDateTime dataUpdate) {
+        this.dataUpdate = dataUpdate;
+    }
 
     public Long getId() {
         return id;

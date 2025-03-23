@@ -5,13 +5,15 @@ import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.model.Restaurante;
 
-public class EspecialidadeService {
+import java.util.Set;
 
-    public static Especialidade toEntity(EspecialidadeDTO especialidadeDTO) {
+public abstract class EspecialidadeService {
+
+    public static Especialidade toEntity(EspecialidadeDTO especialidadeDTO, Set<Restaurante> restaurante) {
         return new Especialidade(
                 especialidadeDTO.nome(),
                 especialidadeDTO.descricao(),
-                null
+                restaurante
         );
     }
 
