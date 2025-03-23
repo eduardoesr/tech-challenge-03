@@ -55,8 +55,8 @@ public class Restaurante {
     @Column(name = "tolerancia")
     private LocalTime tolerancia;
 
-    @Column(name = "dias_tolerancia")
-    private Set<DiasFuncionamento> diasTolerancia;
+    @Column(name = "dias_funcionamento")
+    private Set<DiasFuncionamento> diasFuncionamento;
 
     public Restaurante() {
     }
@@ -73,7 +73,7 @@ public class Restaurante {
             LocalTime horarioAbertura,
             LocalTime horarioFechamento,
             LocalTime tolerancia,
-            Set<DiasFuncionamento> diasTolerancia
+            Set<DiasFuncionamento> diasFuncionamento
     ) {
         this.avaliacoes = avaliacoes;
         this.reservas = reservas;
@@ -86,15 +86,15 @@ public class Restaurante {
         this.horarioAbertura = horarioAbertura;
         this.horarioFechamento = horarioFechamento;
         this.tolerancia = tolerancia;
-        this.diasTolerancia = diasTolerancia;
+        this.diasFuncionamento = diasFuncionamento;
     }
 
-    public Set<DiasFuncionamento> getDiasTolerancia() {
-        return diasTolerancia;
+    public Set<DiasFuncionamento> getDiasFuncionamento() {
+        return diasFuncionamento;
     }
 
-    public void setDiasTolerancia(Set<DiasFuncionamento> diasTolerancia) {
-        this.diasTolerancia = diasTolerancia;
+    public void setDiasFuncionamento(Set<DiasFuncionamento> diasFuncionamento) {
+        this.diasFuncionamento = diasFuncionamento;
     }
 
     public Long getId() {

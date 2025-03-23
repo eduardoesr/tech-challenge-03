@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ReadResturanteService extends RestauranteService {
+public class ReadRestauranteService extends RestauranteService {
 
     RestauranteRepository repository;
 
     @Autowired
-    public ReadResturanteService(RestauranteRepository repository) {
+    public ReadRestauranteService(RestauranteRepository repository) {
         this.repository = repository;
     }
 

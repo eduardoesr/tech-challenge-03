@@ -38,14 +38,11 @@ public class Reserva {
     public Reserva(
             String nomeCliente,
             Integer quantidadePessoas,
-            LocalDateTime dataReserva,
-            LocalDateTime dataSaida,
-            StatusReserva statusReserva) {
+            LocalDateTime dataReserva) {
         this.nomeCliente = nomeCliente;
         this.quantidadePessoas = quantidadePessoas;
         this.dataReserva = dataReserva;
-        this.dataSaida = dataSaida;
-        this.statusReserva = statusReserva;
+        this.statusReserva = StatusReserva.PENDENTE;
     }
 
     public Reserva() {

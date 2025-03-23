@@ -29,10 +29,19 @@ dependencies {
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'com.amazonaws.serverless:aws-serverless-java-container-springboot3:2.1.2'
+	implementation 'org.postgresql:postgresql'
 }
 
 test {
 	useJUnitPlatform()
+}
+
+tasks.register('buildZip', Zip) {
+	into('lib') {
+		from(jar)
+		from(configurations.runtimeClasspath)
+	}
 }
 
 tasks.named('test') {

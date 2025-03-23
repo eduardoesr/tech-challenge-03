@@ -38,7 +38,7 @@ public class UpdateRestauranteService extends RestauranteService {
             restaurante.setEnderecoCompleto(restauranteDTO.enderecoCompleto());
             restaurante.setHorarioAbertura(restauranteDTO.horarioAbertura());
             restaurante.setHorarioFechamento(restauranteDTO.horarioFechamento());
-            restaurante.setDiasTolerancia(restauranteDTO.diasFuncionamentos());
+            restaurante.setDiasFuncionamento(restauranteDTO.diasFuncionamentos());
             restaurante.setTolerancia(restauranteDTO.tolerancia());
             return toRestauranteDTO(repository.save(restaurante));
         } catch (EntityNotFoundException e) {

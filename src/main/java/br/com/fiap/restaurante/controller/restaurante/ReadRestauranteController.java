@@ -1,11 +1,9 @@
 package br.com.fiap.restaurante.controller.restaurante;
 
 import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
-import br.com.fiap.restaurante.repository.RestauranteRepository;
-import br.com.fiap.restaurante.service.restaurante.ReadResturanteService;
+import br.com.fiap.restaurante.service.restaurante.ReadRestauranteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +19,7 @@ import java.util.List;
 public class ReadRestauranteController {
 
     @Autowired
-    ReadResturanteService service;
+    ReadRestauranteService service;
 
     @GetMapping
     @Operation(

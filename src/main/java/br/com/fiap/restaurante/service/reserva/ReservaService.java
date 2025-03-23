@@ -1,17 +1,16 @@
 package br.com.fiap.restaurante.service.reserva;
 
+import br.com.fiap.restaurante.dto.reserva.RequestCreateReservaDTO;
 import br.com.fiap.restaurante.dto.reserva.ReservaDTO;
 import br.com.fiap.restaurante.model.Reserva;
 
 public abstract class ReservaService {
 
-    public static Reserva toEntity(ReservaDTO reservaDTO) {
+    public static Reserva toEntity(RequestCreateReservaDTO reservaDTO) {
         return new Reserva(
                 reservaDTO.nomeCliente(),
                 reservaDTO.quantidadePessoas(),
-                reservaDTO.dataReserva(),
-                reservaDTO.dataSaida(),
-                reservaDTO.statusReserva()
+                reservaDTO.dataReserva()
         );
     }
 

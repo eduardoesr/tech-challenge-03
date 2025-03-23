@@ -1,12 +1,9 @@
 package br.com.fiap.restaurante.controller.especialidade;
 
 import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
-import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
 import br.com.fiap.restaurante.service.especialidade.ReadEspecialidadeService;
-import br.com.fiap.restaurante.service.restaurante.ReadResturanteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
