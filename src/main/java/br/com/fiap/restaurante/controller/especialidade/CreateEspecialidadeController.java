@@ -1,6 +1,7 @@
 package br.com.fiap.restaurante.controller.especialidade;
 
 import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
+import br.com.fiap.restaurante.dto.especialidade.RequestCreateEspecialidadeDTO;
 import br.com.fiap.restaurante.dto.especialidade.RequestUpdateEspecialidadeDTO;
 import br.com.fiap.restaurante.dto.restaurante.RequestCreateRestauranteDTO;
 import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
@@ -30,7 +31,7 @@ public class CreateEspecialidadeController {
             summary = "Cria uma especialidade",
             description = "Insere um especialidade na base"
     )
-    public ResponseEntity<EspecialidadeDTO> create(@Valid @RequestBody RequestUpdateEspecialidadeDTO request) {
+    public ResponseEntity<EspecialidadeDTO> create(@Valid @RequestBody RequestCreateEspecialidadeDTO request) {
         return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(service.create(request));
     }
 

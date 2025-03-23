@@ -1,6 +1,7 @@
 package br.com.fiap.restaurante.service.especialidade;
 
 import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
+import br.com.fiap.restaurante.dto.especialidade.RequestCreateEspecialidadeDTO;
 import br.com.fiap.restaurante.dto.especialidade.RequestUpdateEspecialidadeDTO;
 import br.com.fiap.restaurante.dto.restaurante.RequestCreateRestauranteDTO;
 import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
@@ -22,7 +23,7 @@ public class CreateEspecialidadeService extends EspecialidadeService {
         this.repository = repository;
     }
 
-    public EspecialidadeDTO create(RequestUpdateEspecialidadeDTO dto) {
+    public EspecialidadeDTO create(RequestCreateEspecialidadeDTO dto) {
 
         Especialidade especialidade = toEntity(dto);
 
@@ -30,11 +31,11 @@ public class CreateEspecialidadeService extends EspecialidadeService {
     }
 
     public static Especialidade toEntity(
-            RequestUpdateEspecialidadeDTO especialidadeDTO
+            RequestCreateEspecialidadeDTO especialidadeDTO
     ) {
         return new Especialidade(
-                especialidadeDTO.nome(),
                 especialidadeDTO.descricao(),
+                especialidadeDTO.nome(),
                 null
         );
     }

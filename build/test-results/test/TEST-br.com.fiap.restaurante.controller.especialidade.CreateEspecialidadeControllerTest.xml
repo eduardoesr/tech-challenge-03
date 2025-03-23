@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.fiap.restaurante.controller.especialidade.CreateEspecialidadeControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-03-23T05:02:55.331Z" hostname="NOTEBOOK" time="0.3">
+  <properties/>
+  <testcase name="testCreateEspecialidade()" classname="br.com.fiap.restaurante.controller.especialidade.CreateEspecialidadeControllerTest" time="0.3"/>
+  <system-out><![CDATA[2025-03-23T02:02:55.326-03:00  INFO 33736 --- [restaurante] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [br.com.fiap.restaurante.controller.especialidade.CreateEspecialidadeControllerTest]: CreateEspecialidadeControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-03-23T02:02:55.329-03:00  INFO 33736 --- [restaurante] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration br.com.fiap.restaurante.RestauranteApplication for test class br.com.fiap.restaurante.controller.especialidade.CreateEspecialidadeControllerTest
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

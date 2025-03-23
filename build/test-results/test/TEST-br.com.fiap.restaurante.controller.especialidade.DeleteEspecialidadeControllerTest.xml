@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.fiap.restaurante.controller.especialidade.DeleteEspecialidadeControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-03-23T05:02:55.637Z" hostname="NOTEBOOK" time="0.102">
+  <properties/>
+  <testcase name="testDeleteEspecialidadeInexistente()" classname="br.com.fiap.restaurante.controller.especialidade.DeleteEspecialidadeControllerTest" time="0.086"/>
+  <testcase name="testDeleteEspecialidade()" classname="br.com.fiap.restaurante.controller.especialidade.DeleteEspecialidadeControllerTest" time="0.015"/>
+  <system-out><![CDATA[2025-03-23T02:02:55.634-03:00  INFO 33736 --- [restaurante] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [br.com.fiap.restaurante.controller.especialidade.DeleteEspecialidadeControllerTest]: DeleteEspecialidadeControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-03-23T02:02:55.636-03:00  INFO 33736 --- [restaurante] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration br.com.fiap.restaurante.RestauranteApplication for test class br.com.fiap.restaurante.controller.especialidade.DeleteEspecialidadeControllerTest
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

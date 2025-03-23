@@ -3,15 +3,19 @@ package br.com.fiap.restaurante.controller.exception;
 import br.com.fiap.restaurante.error.StandardError;
 import br.com.fiap.restaurante.error.service.NotFoundServiceError;
 import br.com.fiap.restaurante.error.validation.ValidateError;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.Instant;
 
+@Hidden
+@RestControllerAdvice
 public class ControllerExceptionHendler {
     private StandardError err = new StandardError();
 
