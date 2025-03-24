@@ -19,7 +19,7 @@ public class DeleteRestauranteService extends RestauranteService {
     }
 
     public void deleteById(Long id) {
-        if(repository.existsById(id)){
+        if (repository.existsById(id)){
             repository.deleteById(id);
             return;
         }

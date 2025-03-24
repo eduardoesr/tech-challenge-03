@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/update-restaurante")
-@Tag(name="Restaurante", description="Endpoints que modificão a entidade Restaurante")
+@Tag(name="Restaurante", description="Endpoints que modificam a entidade Restaurante")
 public class UpdateRestauranteController {
 
     @Autowired

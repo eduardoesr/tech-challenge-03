@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("delete-restaurante")
-@Tag(name="Restaurante", description="Endpoints que modificão a entidade Restaurante")
+@Tag(name="Restaurante", description="Endpoints que modificam a entidade Restaurante")
 public class DeleteRestauranteController {
 
     @Autowired

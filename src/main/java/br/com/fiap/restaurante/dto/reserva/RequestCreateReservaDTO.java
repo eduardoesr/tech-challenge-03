@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public record RequestCreateReservaDTO(
-    @Min(value=1, message="O id do restaurante deve ser acima de zero.")
+    @Min(value=0, message="O id do restaurante deve ser positivo.")
     Long restauranteId,
     @NotBlank(message = "Especifique o cliente responsável pela reserva.")
     String nomeCliente,
