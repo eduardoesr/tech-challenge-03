@@ -20,13 +20,13 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">32</div>
+<div class="counter">42</div>
 <p>tests</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">5</div>
 <p>failures</p>
 </div>
 </td>
@@ -38,7 +38,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.426s</div>
+<div class="counter">1.555s</div>
 <p>duration</p>
 </div>
 </td>
@@ -47,8 +47,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">88%</div>
 <p>successful</p>
 </div>
 </td>
@@ -58,12 +58,40 @@
 <div class="tab-container">
 <ul class="tabLinks">
 <li>
+<a href="#">Failed tests</a>
+</li>
+<li>
 <a href="#">Packages</a>
 </li>
 <li>
 <a href="#">Classes</a>
 </li>
 </ul>
+<div class="tab">
+<h2>Failed tests</h2>
+<ul class="linkList">
+<li>
+<a href="classes/br.com.fiap.restaurante.controller.reserva.CreateReservaControllerTest.html">CreateReservaControllerTest</a>.
+<a href="classes/br.com.fiap.restaurante.controller.reserva.CreateReservaControllerTest.html#testCreateReservaAcimaDaCapacidade()">testCreateReservaAcimaDaCapacidade()</a>
+</li>
+<li>
+<a href="classes/br.com.fiap.restaurante.controller.reserva.CreateReservaControllerTest.html">CreateReservaControllerTest</a>.
+<a href="classes/br.com.fiap.restaurante.controller.reserva.CreateReservaControllerTest.html#testCreateReservaExceedsTolerance()">testCreateReservaExceedsTolerance()</a>
+</li>
+<li>
+<a href="classes/br.com.fiap.restaurante.controller.reserva.CreateReservaControllerTest.html">CreateReservaControllerTest</a>.
+<a href="classes/br.com.fiap.restaurante.controller.reserva.CreateReservaControllerTest.html#testCreateReservaOutsideOperatingHours()">testCreateReservaOutsideOperatingHours()</a>
+</li>
+<li>
+<a href="classes/br.com.fiap.restaurante.controller.reserva.CreateReservaControllerTest.html">CreateReservaControllerTest</a>.
+<a href="classes/br.com.fiap.restaurante.controller.reserva.CreateReservaControllerTest.html#testCreateReservaRestauranteFechado()">testCreateReservaRestauranteFechado()</a>
+</li>
+<li>
+<a href="classes/br.com.fiap.restaurante.controller.reserva.ReadReservaControllerTest.html">ReadReservaControllerTest</a>.
+<a href="classes/br.com.fiap.restaurante.controller.reserva.ReadReservaControllerTest.html#testGetReservaByIdNotFound()">testGetReservaByIdNotFound()</a>
+</li>
+</ul>
+</div>
 <div class="tab">
 <h2>Packages</h2>
 <table>
@@ -85,7 +113,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.331s</td>
+<td>0.295s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -95,7 +123,7 @@
 <td>10</td>
 <td>0</td>
 <td>0</td>
-<td>0.781s</td>
+<td>0.742s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -105,8 +133,18 @@
 <td>10</td>
 <td>0</td>
 <td>0</td>
-<td>0.127s</td>
+<td>0.132s</td>
 <td class="success">100%</td>
+</tr>
+<tr>
+<td class="failures">
+<a href="packages/br.com.fiap.restaurante.controller.reserva.html">br.com.fiap.restaurante.controller.reserva</a>
+</td>
+<td>10</td>
+<td>5</td>
+<td>0</td>
+<td>0.210s</td>
+<td class="failures">50%</td>
 </tr>
 <tr>
 <td class="success">
@@ -115,7 +153,7 @@
 <td>11</td>
 <td>0</td>
 <td>0</td>
-<td>0.187s</td>
+<td>0.176s</td>
 <td class="success">100%</td>
 </tr>
 </tbody>
@@ -142,7 +180,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.331s</td>
+<td>0.295s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -152,7 +190,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.653s</td>
+<td>0.590s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -162,7 +200,7 @@
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0.061s</td>
+<td>0.067s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -172,7 +210,7 @@
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0.023s</td>
+<td>0.021s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -182,7 +220,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.044s</td>
+<td>0.064s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -192,7 +230,7 @@
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0.022s</td>
+<td>0.032s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -202,7 +240,7 @@
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0.017s</td>
+<td>0.022s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -212,7 +250,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.055s</td>
+<td>0.050s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -222,8 +260,38 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.033s</td>
+<td>0.028s</td>
 <td class="success">100%</td>
+</tr>
+<tr>
+<td class="failures">
+<a href="classes/br.com.fiap.restaurante.controller.reserva.CreateReservaControllerTest.html">br.com.fiap.restaurante.controller.reserva.CreateReservaControllerTest</a>
+</td>
+<td>6</td>
+<td>4</td>
+<td>0</td>
+<td>0.132s</td>
+<td class="failures">33%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/br.com.fiap.restaurante.controller.reserva.DeleteReservaControllerTest.html">br.com.fiap.restaurante.controller.reserva.DeleteReservaControllerTest</a>
+</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.024s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="failures">
+<a href="classes/br.com.fiap.restaurante.controller.reserva.ReadReservaControllerTest.html">br.com.fiap.restaurante.controller.reserva.ReadReservaControllerTest</a>
+</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>0.054s</td>
+<td class="failures">66%</td>
 </tr>
 <tr>
 <td class="success">
@@ -232,7 +300,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.074s</td>
+<td>0.058s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -242,7 +310,7 @@
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0.022s</td>
+<td>0.030s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -252,7 +320,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.042s</td>
+<td>0.038s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -262,7 +330,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.049s</td>
+<td>0.050s</td>
 <td class="success">100%</td>
 </tr>
 </tbody>
@@ -276,7 +344,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.13</a> at 25 de mar. de 2025 20:38:35</p>
+<a href="https://www.gradle.org">Gradle 8.13</a> at 25 de mar. de 2025 20:48:46</p>
 </div>
 </div>
 </body>
