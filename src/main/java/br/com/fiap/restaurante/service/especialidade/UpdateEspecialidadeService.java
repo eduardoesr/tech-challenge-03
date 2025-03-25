@@ -27,7 +27,6 @@ public class UpdateEspecialidadeService extends EspecialidadeService {
             especialidade.setDescricao(especialidadeDTO.descricao());
             return toEspecialidadeDTO(repository.save(especialidade));
         } catch (EntityNotFoundException e) {
-            //TODO implementar erros personalizados de EntityNotFoundException
             throw new NotFoundServiceError("UpdateEspecialidade: identificador da especialidade não encontrada");
         }
     }

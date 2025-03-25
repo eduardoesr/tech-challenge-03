@@ -10,28 +10,7 @@ import java.util.stream.Collectors;
 
 public abstract class RestauranteService {
 
-    //TODO verificar real necessidade da função
-    /*public static Restaurante toEntity(RestauranteDTO restauranteDTO) {
-        return new Restaurante(
-                restauranteDTO.avaliacoes()
-                        .stream()
-                        .map((e) -> AvaliacaoService.toEntity(e, null)).collect(Collectors.toSet()),
-                restauranteDTO.reservas()
-                        .stream()
-                        .map(ReservaService::toEntity)
-                        .collect(Collectors.toSet()),
-                EspecialidadeService.toEntity(restauranteDTO.especialidade(), null),
-                restauranteDTO.capacidadePessoas(),
-                restauranteDTO.nome(),
-                restauranteDTO.latitude(),
-                restauranteDTO.longitude(),
-                restauranteDTO.enderecoCompleto(),
-                restauranteDTO.horarioAbertura(),
-                restauranteDTO.horarioFechamento(),
-                restauranteDTO.tolerancia(),
-                restauranteDTO.diasFuncionamentos()
-        );
-    }*/
+    protected RestauranteService () {}
 
     public static RestauranteDTO toRestauranteDTO(Restaurante restaurante) {
         return new RestauranteDTO(

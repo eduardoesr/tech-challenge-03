@@ -6,6 +6,8 @@ import br.com.fiap.restaurante.model.Reserva;
 
 public abstract class ReservaService {
 
+    protected ReservaService() {}
+
     public static Reserva toEntity(RequestCreateReservaDTO reservaDTO) {
         return new Reserva(
                 reservaDTO.nomeCliente(),

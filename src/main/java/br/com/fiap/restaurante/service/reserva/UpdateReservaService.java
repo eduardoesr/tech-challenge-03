@@ -26,7 +26,6 @@ public class UpdateReservaService extends ReservaService {
     }
 
     public ReservaDTO update(Long id, RequestUpdateReservaDTO reservaDTO) {
-        // TODO: Corrigir erros.
         Reserva reserva = reservaRepository.findById(id)
                 .orElseThrow(() -> new NotFoundServiceError("UpdateReserva: Reserva não encontrada."));
         Restaurante restaurante = restauranteRepository.findById(reservaDTO.restauranteId())
@@ -41,7 +40,6 @@ public class UpdateReservaService extends ReservaService {
     }
 
     public ReservaDTO updateSimples(Long id, StatusReserva statusReserva) {
-        // TODO: Corrigir erros.
         Reserva reserva = reservaRepository.findById(id)
                 .orElseThrow(() -> new NotFoundServiceError("UpdateReserva: Reserva não encontrada."));
         reserva.setStatusReserva(statusReserva);

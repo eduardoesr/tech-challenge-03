@@ -1,5 +1,6 @@
 package br.com.fiap.restaurante;
 
+import br.com.fiap.restaurante.error.LambdaError;
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
 import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
 import com.amazonaws.serverless.proxy.model.AwsProxyResponse;
@@ -20,7 +21,7 @@ public class StreamLambdaHandler implements RequestStreamHandler {
         } catch (ContainerInitializationException e) {
             // if we fail here. We re-throw the exception to force another cold start
             e.printStackTrace();
-            throw new RuntimeException("Could not initialize Spring Boot application", e);
+            throw new LambdaError("Could not initialize Spring Boot application", e);
         }
     }
 

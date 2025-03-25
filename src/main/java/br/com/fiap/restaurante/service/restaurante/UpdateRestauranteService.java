@@ -42,7 +42,6 @@ public class UpdateRestauranteService extends RestauranteService {
             restaurante.setTolerancia(restauranteDTO.tolerancia());
             return toRestauranteDTO(repository.save(restaurante));
         } catch (EntityNotFoundException e) {
-            //TODO implementar erros personalizados de EntityNotFoundException
             throw new NotFoundServiceError("UpdateRestaurante: identificador do restaurante não encontrado");
         }
     }

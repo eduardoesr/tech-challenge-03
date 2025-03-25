@@ -11,6 +11,7 @@ public class StandardError {
     private String path;
 
     public StandardError() {
+        //
     }
 
     public String getError() {

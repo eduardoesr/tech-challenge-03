@@ -9,8 +9,7 @@ public abstract class AvaliacaoService {
 
     AvaliacaoRepository repository;
 
-    protected AvaliacaoService() {
-    }
+    protected AvaliacaoService() {}
 
     protected AvaliacaoService(AvaliacaoRepository repository) {
         this.repository = repository;

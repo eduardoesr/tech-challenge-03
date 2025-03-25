@@ -2,6 +2,7 @@ package br.com.fiap.restaurante.service.reserva;
 
 import br.com.fiap.restaurante.dto.reserva.RequestCreateReservaDTO;
 import br.com.fiap.restaurante.dto.reserva.ReservaDTO;
+import br.com.fiap.restaurante.error.service.CreateReservaValidationError;
 import br.com.fiap.restaurante.error.service.NotFoundServiceError;
 import br.com.fiap.restaurante.model.Reserva;
 import br.com.fiap.restaurante.model.Restaurante;
@@ -41,13 +42,12 @@ public class CreateReservaService extends ReservaService {
     }
 
     public ReservaDTO create(RequestCreateReservaDTO reservaDTO) {
-        // TODO: Corrigir erros.
         Restaurante restaurante = restauranteRepository.findById(reservaDTO.restauranteId())
                 .orElseThrow(() -> new NotFoundServiceError("CreateReserva: Identificador do restaurante não encontrado."));
 
         DayOfWeek diaAtual = reservaDTO.dataReserva().getDayOfWeek();
         if (!restaurante.getDiasFuncionamento().contains(dayOfWeekToDiasFuncionamentoMap.get(diaAtual))) {
-            throw new NotFoundServiceError("CreateReserva: O restaurante não está aberto neste dia.");
+            throw new CreateReservaValidationError("CreateReserva: O restaurante não está aberto neste dia.");
         }
 
         int totalPessoas = restaurante.getReservas().stream()
@@ -55,17 +55,17 @@ public class CreateReservaService extends ReservaService {
                 .mapToInt(Reserva::getQuantidadePessoas)
                 .sum() + reservaDTO.quantidadePessoas();
         if (totalPessoas > restaurante.getCapacidadePessoas()) {
-            throw new NotFoundServiceError("CreateReserva: Acima da capacidade.");
+            throw new CreateReservaValidationError("CreateReserva: Acima da capacidade.");
         }
 
         if (reservaDTO.dataReserva().toLocalTime().isBefore(restaurante.getHorarioAbertura())
                 || reservaDTO.dataReserva().toLocalTime().isAfter(restaurante.getHorarioFechamento())) {
-            throw new NotFoundServiceError("CreateReserva: A reserva deve ser em horário de serviço do restaurante.");
+            throw new CreateReservaValidationError("CreateReserva: A reserva deve ser em horário de serviço do restaurante.");
         }
 
         Duration tempoExcedido = Duration.between(reservaDTO.dataReserva(), LocalDateTime.now());
         if (tempoExcedido.toMinutes() > restaurante.getTolerancia().toSecondOfDay() / 60) {
-            throw new NotFoundServiceError("CreateReserva: O tempo de tolerância para a reserva foi excedido.");
+            throw new CreateReservaValidationError("CreateReserva: O tempo de tolerância para a reserva foi excedido.");
         }
 
         Reserva reserva = toEntity(reservaDTO);

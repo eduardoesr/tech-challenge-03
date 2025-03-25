@@ -20,7 +20,8 @@ public class ReadEspecialidadeService extends EspecialidadeService {
     }
 
     public EspecialidadeDTO findById(Long id) {
-        Especialidade especialidade = repository.findById(id).orElseThrow(() -> new NotFoundServiceError("ReadEspecialidade: identificador não encontrado"));//TODO implementar error para 'not find'
+        Especialidade especialidade = repository.findById(id).orElseThrow(()
+                -> new NotFoundServiceError("ReadEspecialidade: identificador não encontrado"));
         return toEspecialidadeDTO(especialidade);
     }
 

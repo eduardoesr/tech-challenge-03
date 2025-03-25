@@ -30,22 +30,16 @@ public class CreateRestauranteService extends RestauranteService {
             throw new NotFoundServiceError("CreateRestaurante: identificador da especialidade não encontrado");
         }
 
-        Restaurante restaurante = toEntity(
-                dto,
-                repositoryEspecialidade.getReferenceById(dto.especialidadeId())
-        );
+        Restaurante restaurante = toEntity(dto);
+        restaurante.setEspecialidade(repositoryEspecialidade.getReferenceById(dto.especialidadeId()));
 
         return toRestauranteDTO(repository.save(restaurante));
     }
 
     public static Restaurante toEntity(
-            RequestCreateRestauranteDTO restauranteDTO,
-            Especialidade especialidade
+            RequestCreateRestauranteDTO restauranteDTO
     ) {
         return new Restaurante(
-                null,
-                null,
-                especialidade,
                 restauranteDTO.capacidadePessoas(),
                 restauranteDTO.nome(),
                 restauranteDTO.latitude(),

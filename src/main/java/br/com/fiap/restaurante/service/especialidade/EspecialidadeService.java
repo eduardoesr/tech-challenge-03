@@ -8,6 +8,8 @@ import java.util.Set;
 
 public abstract class EspecialidadeService {
 
+    protected EspecialidadeService() {}
+
     public static Especialidade toEntity(EspecialidadeDTO especialidadeDTO, Set<Restaurante> restaurante) {
         return new Especialidade(
                 especialidadeDTO.nome(),

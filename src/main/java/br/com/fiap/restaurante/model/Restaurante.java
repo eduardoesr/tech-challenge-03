@@ -61,9 +61,6 @@ public class Restaurante {
     }
 
     public Restaurante(
-            Set<Avaliacao> avaliacoes,
-            Set<Reserva> reservas,
-            Especialidade especialidade,
             Integer capacidadePessoas,
             String nome,
             Integer latitude,
@@ -74,9 +71,6 @@ public class Restaurante {
             LocalTime tolerancia,
             Set<DiasFuncionamento> diasFuncionamento
     ) {
-        this.avaliacoes = avaliacoes;
-        this.reservas = reservas;
-        this.especialidade = especialidade;
         this.capacidadePessoas = capacidadePessoas;
         this.nome = nome;
         this.latitude = latitude;
