@@ -5,6 +5,7 @@ import br.com.fiap.restaurante.dto.especialidade.RequestUpdateEspecialidadeDTO;
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,13 @@ public class UpdateEspecialidadeControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @BeforeEach
-    public void setup() {
+    @AfterEach
+    void after() {
         repository.deleteAll();
     }
 
     @Test
-    public void testUpdateEspecialidade() throws Exception {
+    void testUpdateEspecialidade() throws Exception {
 
         RequestUpdateEspecialidadeDTO request = new RequestUpdateEspecialidadeDTO(
                 "new name",
@@ -66,7 +67,7 @@ public class UpdateEspecialidadeControllerTest {
     }
 
     @Test
-    public void testUpdateEspecialidadeInexistente() throws Exception {
+    void testUpdateEspecialidadeInexistente() throws Exception {
         RequestUpdateEspecialidadeDTO request = new RequestUpdateEspecialidadeDTO(
                 "new name",
                 "new descricao"
@@ -80,7 +81,7 @@ public class UpdateEspecialidadeControllerTest {
     }
 
     @Test
-    public void testInvalidParamUpdateEspecialidade() throws Exception {
+    void testInvalidParamUpdateEspecialidade() throws Exception {
         RequestUpdateEspecialidadeDTO request = new RequestUpdateEspecialidadeDTO(
             "",
             ""

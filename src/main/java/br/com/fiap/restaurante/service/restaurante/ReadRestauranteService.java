@@ -27,8 +27,13 @@ public class ReadRestauranteService extends RestauranteService {
         return toRestauranteDTO(restaurante);
     }
 
-    public List<RestauranteDTO> findAll(Pageable pageable) {
+    public Page<RestauranteDTO> findByNomeContainingIgnoreCase(String nome, Pageable pageable) {
+        Page<Restaurante> restaurantes = repository.findByNomeContainingIgnoreCase(nome, pageable);
+        return restaurantes.map(RestauranteService::toRestauranteDTO);
+    }
+
+    public Page<RestauranteDTO> findAll(Pageable pageable) {
         Page<Restaurante> restaurantes = repository.findAll(pageable);
-        return restaurantes.stream().map(RestauranteService::toRestauranteDTO).toList();
+        return restaurantes.map(RestauranteService::toRestauranteDTO);
     }
 }

@@ -3,6 +3,7 @@ package br.com.fiap.restaurante.controller.especialidade;
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,8 @@ public class ReadEspecialidadeControllerTest {
     @Autowired
     private ObjectMapper mapper;
 
-    @BeforeEach
-    void setup() {
-        repository.deleteAll();
-    }
+    @AfterEach
+    void after() {repository.deleteAll();}
 
     @Test
     void testReadEspecialidade() throws Exception {
@@ -54,7 +53,7 @@ public class ReadEspecialidadeControllerTest {
     }
 
     @Test
-    public void testReadEspecialidadeInexistente() throws Exception {
+    void testReadEspecialidadeInexistente() throws Exception {
         mockMvc.perform(get("/especialidade/{id}", 1L))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.message").value("ReadEspecialidade: identificador não encontrado"));

@@ -5,6 +5,7 @@ import br.com.fiap.restaurante.service.restaurante.ReadRestauranteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,13 @@ public class ReadRestauranteController {
         summary = "Lista todos os restaurantes",
         description = "Exibe uma lista de restaurante"
     )
-    public ResponseEntity<List<RestauranteDTO>> findAll(@PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable) {
+    public ResponseEntity<Page<RestauranteDTO>> findAll(
+            @RequestParam(required = false) String nome,
+            @PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable
+    ) {
+        if (nome != null) {
+            return ResponseEntity.ok(service.findByNomeContainingIgnoreCase(nome, pageable)); // Filtra por nome
+        }
         return ResponseEntity.ok(service.findAll(pageable));
     }
 

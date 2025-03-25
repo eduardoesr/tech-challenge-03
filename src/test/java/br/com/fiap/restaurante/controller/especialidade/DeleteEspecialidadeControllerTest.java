@@ -4,6 +4,7 @@ package br.com.fiap.restaurante.controller.especialidade;
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,8 @@ class DeleteEspecialidadeControllerTest {
     @Autowired
     private ObjectMapper objectMapper; // Para serializar/deserializar JSON
 
-    @BeforeEach
-    void setup() {
+    @AfterEach
+    void after() {
         repository.deleteAll();
     }
 
@@ -52,7 +53,7 @@ class DeleteEspecialidadeControllerTest {
     }
 
     @Test
-    public void testDeleteEspecialidadeInexistente() throws Exception {
+    void testDeleteEspecialidadeInexistente() throws Exception {
         mockMvc.perform(delete("/delete-especialidade/{id}", 1L))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.message").value("DeleteEspecialidade: identificador não foi encontrado"));

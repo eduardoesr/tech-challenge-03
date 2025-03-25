@@ -3,6 +3,7 @@ package br.com.fiap.restaurante.controller.especialidade;
 import br.com.fiap.restaurante.dto.especialidade.RequestCreateEspecialidadeDTO;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +34,13 @@ public class CreateEspecialidadeControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @BeforeEach
-    public void setup() {
+    @AfterEach
+    void after() {
         repository.deleteAll();
     }
 
     @Test
-    public void testCreateEspecialidade() throws Exception {
+    void testCreateEspecialidade() throws Exception {
 
         RequestCreateEspecialidadeDTO request = new RequestCreateEspecialidadeDTO(
                 "Pizza",
@@ -58,7 +59,7 @@ public class CreateEspecialidadeControllerTest {
     }
 
     @Test
-    public void testInvalidParamCreateEspecialidade() throws Exception {
+    void testInvalidParamCreateEspecialidade() throws Exception {
         RequestCreateEspecialidadeDTO request = new RequestCreateEspecialidadeDTO(
             "",
             ""
