@@ -2,11 +2,8 @@ package br.com.fiap.restaurante.service.especialidade;
 
 import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
 import br.com.fiap.restaurante.dto.especialidade.RequestUpdateEspecialidadeDTO;
-import br.com.fiap.restaurante.dto.restaurante.RequestUpdateRestauranteDTO;
-import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
 import br.com.fiap.restaurante.error.service.NotFoundServiceError;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
-import br.com.fiap.restaurante.repository.RestauranteRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,11 +1,9 @@
 package br.com.fiap.restaurante.controller.avaliacao;
 
 import br.com.fiap.restaurante.service.avaliacao.DeleteAvaliacaoService;
-import br.com.fiap.restaurante.service.especialidade.DeleteEspecialidadeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name="Avaliacao", description="Endpoints que modificão a entidade Avaliacao")
 public class DeleteAvaliacaoController {
 
-    @Autowired
-    DeleteAvaliacaoService service;
+    final DeleteAvaliacaoService service;
+
+    public DeleteAvaliacaoController(DeleteAvaliacaoService service) {
+        this.service = service;
+    }
 
     @DeleteMapping("/{id}")
     @Operation(

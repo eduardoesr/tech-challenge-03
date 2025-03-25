@@ -2,8 +2,6 @@ package br.com.fiap.restaurante.service.avaliacao;
 
 import br.com.fiap.restaurante.dto.avaliacao.AvaliacaoDTO;
 import br.com.fiap.restaurante.dto.avaliacao.RequestUpdateAvaliacaoDTO;
-import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
-import br.com.fiap.restaurante.dto.especialidade.RequestUpdateEspecialidadeDTO;
 import br.com.fiap.restaurante.error.service.NotFoundServiceError;
 import br.com.fiap.restaurante.repository.AvaliacaoRepository;
 import jakarta.persistence.EntityNotFoundException;

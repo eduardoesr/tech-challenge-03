@@ -1,6 +1,5 @@
 package br.com.fiap.restaurante.dto.reserva;
 
-import br.com.fiap.restaurante.model.Restaurante;
 import br.com.fiap.restaurante.model.context.StatusReserva;
 
 import java.time.LocalDateTime;

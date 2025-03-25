@@ -3,12 +3,8 @@ package br.com.fiap.restaurante.dto.restaurante;
 import br.com.fiap.restaurante.dto.avaliacao.AvaliacaoDTO;
 import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
 import br.com.fiap.restaurante.dto.reserva.ReservaDTO;
-import br.com.fiap.restaurante.model.Avaliacao;
-import br.com.fiap.restaurante.model.Especialidade;
-import br.com.fiap.restaurante.model.Reserva;
 import br.com.fiap.restaurante.model.context.DiasFuncionamento;
 
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Set;
 

@@ -5,7 +5,6 @@ import br.com.fiap.restaurante.service.reserva.ReadReservaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +20,11 @@ import java.util.List;
 @Tag(name="Reserva", description="Endpoints que listam a entidade Reserva")
 public class ReadReservaController {
 
-    @Autowired
-    ReadReservaService service;
+    final ReadReservaService service;
+
+    public ReadReservaController(ReadReservaService service) {
+        this.service = service;
+    }
 
     @GetMapping
     @Operation(

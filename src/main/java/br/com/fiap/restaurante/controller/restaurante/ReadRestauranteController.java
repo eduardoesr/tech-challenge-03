@@ -5,7 +5,6 @@ import br.com.fiap.restaurante.service.restaurante.ReadRestauranteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +17,11 @@ import java.util.List;
 @Tag(name="Restaurante", description="Endpoints que modificam a entidade Restaurante")
 public class ReadRestauranteController {
 
-    @Autowired
-    ReadRestauranteService service;
+    final ReadRestauranteService service;
+
+    public ReadRestauranteController(ReadRestauranteService service) {
+        this.service = service;
+    }
 
     @GetMapping
     @Operation(

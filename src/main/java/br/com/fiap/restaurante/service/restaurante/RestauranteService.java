@@ -2,7 +2,6 @@ package br.com.fiap.restaurante.service.restaurante;
 
 import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
 import br.com.fiap.restaurante.model.Restaurante;
-import br.com.fiap.restaurante.repository.RestauranteRepository;
 import br.com.fiap.restaurante.service.avaliacao.AvaliacaoService;
 import br.com.fiap.restaurante.service.especialidade.EspecialidadeService;
 import br.com.fiap.restaurante.service.reserva.ReservaService;

@@ -1,7 +1,6 @@
 package br.com.fiap.restaurante.service.especialidade;
 
 import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
-import br.com.fiap.restaurante.dto.restaurante.RestauranteDTO;
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.model.Restaurante;
 

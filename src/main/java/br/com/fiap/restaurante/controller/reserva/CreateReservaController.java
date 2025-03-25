@@ -5,7 +5,6 @@ import br.com.fiap.restaurante.dto.reserva.ReservaDTO;
 import br.com.fiap.restaurante.service.reserva.CreateReservaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name="Reserva", description="Endpoints que modificam a entidade Reserva")
 public class CreateReservaController {
 
-    @Autowired
-    CreateReservaService service;
+    final CreateReservaService service;
+
+    public CreateReservaController(CreateReservaService service) {
+        this.service = service;
+    }
 
     @PostMapping
     @Operation(

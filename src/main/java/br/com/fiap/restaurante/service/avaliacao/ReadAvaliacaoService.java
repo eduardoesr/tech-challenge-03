@@ -1,10 +1,8 @@
 package br.com.fiap.restaurante.service.avaliacao;
 
 import br.com.fiap.restaurante.dto.avaliacao.AvaliacaoDTO;
-import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
 import br.com.fiap.restaurante.error.service.NotFoundServiceError;
 import br.com.fiap.restaurante.model.Avaliacao;
-import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

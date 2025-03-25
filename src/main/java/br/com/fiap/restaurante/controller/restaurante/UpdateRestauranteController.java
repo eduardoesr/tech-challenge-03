@@ -6,7 +6,6 @@ import br.com.fiap.restaurante.service.restaurante.UpdateRestauranteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name="Restaurante", description="Endpoints que modificam a entidade Restaurante")
 public class UpdateRestauranteController {
 
-    @Autowired
-    UpdateRestauranteService service;
+    final UpdateRestauranteService service;
+
+    public UpdateRestauranteController(UpdateRestauranteService service) {
+        this.service = service;
+    }
 
     @PutMapping("/{id}")
     @Operation(

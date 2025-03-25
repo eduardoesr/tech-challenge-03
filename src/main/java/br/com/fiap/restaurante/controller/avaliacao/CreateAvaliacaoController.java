@@ -6,7 +6,6 @@ import br.com.fiap.restaurante.service.avaliacao.CreateAvaliacaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name="Avaliacao", description="Endpoints que modificão a entidade Avaliacao")
 public class CreateAvaliacaoController {
 
-    @Autowired
-    CreateAvaliacaoService service;
+    final CreateAvaliacaoService service;
+
+    public CreateAvaliacaoController(CreateAvaliacaoService service) {
+        this.service = service;
+    }
 
     @PostMapping
     @Operation(

@@ -2,7 +2,6 @@ package br.com.fiap.restaurante.service.avaliacao;
 
 import br.com.fiap.restaurante.error.service.NotFoundServiceError;
 import br.com.fiap.restaurante.repository.AvaliacaoRepository;
-import br.com.fiap.restaurante.repository.EspecialidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

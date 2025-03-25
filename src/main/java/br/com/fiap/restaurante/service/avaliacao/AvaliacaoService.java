@@ -1,9 +1,7 @@
 package br.com.fiap.restaurante.service.avaliacao;
 
 import br.com.fiap.restaurante.dto.avaliacao.AvaliacaoDTO;
-import br.com.fiap.restaurante.dto.especialidade.EspecialidadeDTO;
 import br.com.fiap.restaurante.model.Avaliacao;
-import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.model.Restaurante;
 import br.com.fiap.restaurante.repository.AvaliacaoRepository;
 
@@ -11,10 +9,10 @@ public abstract class AvaliacaoService {
 
     AvaliacaoRepository repository;
 
-    public AvaliacaoService() {
+    protected AvaliacaoService() {
     }
 
-    public AvaliacaoService(AvaliacaoRepository repository) {
+    protected AvaliacaoService(AvaliacaoRepository repository) {
         this.repository = repository;
     }
 
