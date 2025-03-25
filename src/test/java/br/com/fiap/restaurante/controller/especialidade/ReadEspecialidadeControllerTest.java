@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,5 +51,35 @@ public class ReadEspecialidadeControllerTest {
                 .andExpect(jsonPath("$.id").value(especialidade.getId()))
                 .andExpect(jsonPath("$.nome").value(especialidade.getNome()))
                 .andExpect(jsonPath("$.descricao").value(especialidade.getDescricao()));
+    }
+
+    @Test
+    public void testReadEspecialidadeInexistente() throws Exception {
+        mockMvc.perform(get("/especialidade/{id}", 1L))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message").value("ReadEspecialidade: identificador não encontrado"));
+    }
+
+    @Test
+    void testReadAllEspecialidade() throws Exception {
+        repository.save(new Especialidade(
+                "Especialidade Descricao 1",
+                "Especialiade",
+                null
+        ));
+        repository.save(new Especialidade(
+                "Especialidade Descricao 2",
+                "Especialiade",
+                null
+        ));
+        repository.save(new Especialidade(
+                "Especialidade Descricao 3",
+                "Especialiade",
+                null
+        ));
+
+        mockMvc.perform(get("/especialidade"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content.length()").value(3));
     }
 }

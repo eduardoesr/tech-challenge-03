@@ -33,12 +33,21 @@ public class ReadReservaController {
         return ResponseEntity.ok(service.findAll(pageable));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/restaurante/{id}")
     @Operation(
             summary = "Lista todas as reservas de um restaurante com o id especificado",
             description = "Exibe uma lista de reservas"
     )
-    public ResponseEntity<List<ReservaDTO>> findById(@NotNull @PathVariable Long id) {
-        return ResponseEntity.ok(service.findAllByRestaurantId(id));
+    public ResponseEntity<List<ReservaDTO>> findByRestauranteId(@NotNull @PathVariable Long id) {
+        return ResponseEntity.ok(service.findAllByRestauranteId(id));
+    }
+
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Lista todas uma reserva de um restaurante",
+            description = "Exibe uma informações sobre uma reserva"
+    )
+    public ResponseEntity<ReservaDTO> findById(@NotNull @PathVariable Long id) {
+        return ResponseEntity.ok(service.findById(id));
     }
 }
