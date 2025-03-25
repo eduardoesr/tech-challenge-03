@@ -1,67 +1,96 @@
-package br.com.fiap.restaurante.controller.especialidade;
+package br.com.fiap.restaurante.controller.restaurante;
 
-import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
+import br.com.fiap.restaurante.repository.RestauranteRepository;
 import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import br.com.fiap.restaurante.utils.RestauranteTestUtils;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.temporal.ChronoUnit;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class ReadEspecialidadeControllerTest {
+@Transactional
+public class ReadRestauranteControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private EspecialidadeRepository repository;
+    private RestauranteRepository repository;
 
     @Autowired
-    private ObjectMapper mapper;
+    private EspecialidadeRepository especialidadeRepository;
+
+    private Long especialidadeId;
 
     @AfterEach
-    void after() {repository.deleteAll();}
+    void finish() {
+        especialidadeRepository.deleteAll();
+        repository.deleteAll();
+    }
 
-    @Test
-    void testReadEspecialidade() throws Exception {
-        var especialidade = repository.save(EspecialidadeTestUtils.getDefaultEspecialidade());
-
-        mockMvc.perform(get("/especialidade/{id}", especialidade.getId()))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(especialidade.getId()))
-                .andExpect(jsonPath("$.nome").value(especialidade.getNome()))
-                .andExpect(jsonPath("$.descricao").value(especialidade.getDescricao()));
+    @BeforeEach
+    public void setup() {
+        especialidadeRepository.deleteAll();
+        repository.deleteAll();
+        this.especialidadeId = especialidadeRepository.save(EspecialidadeTestUtils.getDefaultEspecialidade()).getId();
     }
 
     @Test
-    void testReadEspecialidadeInexistente() throws Exception {
-        mockMvc.perform(get("/especialidade/{id}", 1L))
+    void testReadRestaurante() throws Exception {
+        var restaurante = RestauranteTestUtils.getDefaultRestaurante();
+
+        restaurante.setEspecialidade(especialidadeRepository.getReferenceById(especialidadeId));
+
+        restaurante = repository.save(restaurante);
+
+        mockMvc.perform(get("/restaurante/{id}", restaurante.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nome", is(restaurante.getNome())))
+                .andExpect(jsonPath("$.capacidadePessoas", is(restaurante.getCapacidadePessoas())))
+                .andExpect(jsonPath("$.latitude", is(restaurante.getLatitude())))
+                .andExpect(jsonPath("$.longitude", is(restaurante.getLongitude())))
+                .andExpect(jsonPath("$.enderecoCompleto", is(restaurante.getEnderecoCompleto())))
+                .andExpect(jsonPath("$.horarioAbertura", containsString(restaurante.getHorarioAbertura().truncatedTo(ChronoUnit.MILLIS).toString())))//Adicionando truncatedTo para ligar com problemas de precisão em comparação
+                .andExpect(jsonPath("$.horarioFechamento", containsString(restaurante.getHorarioFechamento().truncatedTo(ChronoUnit.MILLIS).toString())))
+                .andExpect(jsonPath("$.diasFuncionamentos.length()", is(restaurante.getDiasFuncionamento().size())))
+                .andExpect(jsonPath("$.tolerancia", containsString(restaurante.getTolerancia().truncatedTo(ChronoUnit.MILLIS).toString())));
+    }
+
+    @Test
+    void testReadRestauranteInexistente() throws Exception {
+        mockMvc.perform(get("/restaurante/{id}", 1L))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.message").value("ReadEspecialidade: identificador não encontrado"));
+                .andExpect(jsonPath("$.message").value("ReadResturante: identificador não encontrado"));
     }
 
     @Test
-    void testReadAllEspecialidade() throws Exception {
-        repository.save(EspecialidadeTestUtils.getDefaultEspecialidade());
-        repository.save(EspecialidadeTestUtils.getDefaultEspecialidade());
-        repository.save(EspecialidadeTestUtils.getDefaultEspecialidade());
+    void testReadAllRestaurante() throws Exception {
+        var restauranteA = RestauranteTestUtils.getDefaultRestaurante();
+        restauranteA.setEspecialidade(especialidadeRepository.getReferenceById(especialidadeId));
+        repository.save(restauranteA);
+        var restauranteB = RestauranteTestUtils.getDefaultRestaurante();
+        restauranteB.setEspecialidade(especialidadeRepository.getReferenceById(especialidadeId));
+        repository.save(restauranteB);
 
-        mockMvc.perform(get("/especialidade"))
+        mockMvc.perform(get("/restaurante"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content.length()").value(3));
+                .andExpect(jsonPath("$.content.length()").value(2));
     }
 }

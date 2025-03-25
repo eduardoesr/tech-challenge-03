@@ -4,6 +4,7 @@ import br.com.fiap.restaurante.dto.especialidade.RequestCreateEspecialidadeDTO;
 import br.com.fiap.restaurante.dto.especialidade.RequestUpdateEspecialidadeDTO;
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
+import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -49,11 +50,7 @@ public class UpdateEspecialidadeControllerTest {
                 "new descricao"
         );
 
-        Especialidade especialidade = repository.save(new Especialidade(
-            "descricao",
-            "nome",
-            null
-        ));
+        Especialidade especialidade = repository.save(EspecialidadeTestUtils.getDefaultEspecialidade());
 
         mockMvc.perform(put("/update-especialidade/{id}", especialidade.getId())
                         .contentType(MediaType.APPLICATION_JSON)
@@ -68,10 +65,7 @@ public class UpdateEspecialidadeControllerTest {
 
     @Test
     void testUpdateEspecialidadeInexistente() throws Exception {
-        RequestUpdateEspecialidadeDTO request = new RequestUpdateEspecialidadeDTO(
-                "new name",
-                "new descricao"
-        );
+        RequestUpdateEspecialidadeDTO request = EspecialidadeTestUtils.getDefaultRequestUpdateEspecialidadeDTO();
 
         mockMvc.perform(put("/update-especialidade/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -82,16 +76,9 @@ public class UpdateEspecialidadeControllerTest {
 
     @Test
     void testInvalidParamUpdateEspecialidade() throws Exception {
-        RequestUpdateEspecialidadeDTO request = new RequestUpdateEspecialidadeDTO(
-            "",
-            ""
-        );
+        RequestUpdateEspecialidadeDTO request = EspecialidadeTestUtils.getDefaultInvalidRequestUpdateEspecialidadeDTO();
 
-        Long id = repository.save(new Especialidade(
-                "descricao",
-                "nome",
-                null
-        )).getId();
+        Long id = repository.save(EspecialidadeTestUtils.getDefaultEspecialidade()).getId();
 
         mockMvc.perform(put("/update-especialidade/{id}",id)
                         .contentType(MediaType.APPLICATION_JSON)

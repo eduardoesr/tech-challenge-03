@@ -1,6 +1,6 @@
 package br.com.fiap.restaurante.controller.restaurante;
 
-import br.com.fiap.restaurante.dto.especialidade.RequestCreateEspecialidadeDTO;
+import br.com.fiap.restaurante.dto.especialidade.RequestUpdateEspecialidadeDTO;
 import br.com.fiap.restaurante.dto.restaurante.RequestCreateRestauranteDTO;
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
@@ -19,13 +19,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test") // Usa o perfil de teste (application-test.properties)
 @Transactional
-public class CreateRestauranteControllerTest {
+public class UpdateRestauranteControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -63,14 +63,19 @@ public class CreateRestauranteControllerTest {
     }
 
     @Test
-    public void testCreateRestaurante() throws Exception {
+    public void testUpdateRestaurante() throws Exception {
 
-        RequestCreateRestauranteDTO request = RestauranteTestUtils.getDefaultRequestCreateRestauranteDTO(this.especialidadeId);
+        var request = RestauranteTestUtils.getDefaultRequestUpdateRestauranteDTO(this.especialidadeId);
 
-        mockMvc.perform(post("/create-restaurante")
+        var restaurante = RestauranteTestUtils.getDefaultRestaurante();
+
+        restaurante.setEspecialidade(especialidadeRepository.getReferenceById(especialidadeId));
+        restaurante = repository.save(restaurante);
+
+        mockMvc.perform(put("/update-restaurante/{id}", restaurante.getId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isCreated()) // Verifica se o status é 201 Created
+                .andExpect(status().isOk()) // Verifica se o status é 201 Created
                 .andExpect(jsonPath("$.nome", is(request.nome())))
                 .andExpect(jsonPath("$.especialidade.id", is(request.especialidadeId().intValue())))
                 .andExpect(jsonPath("$.capacidadePessoas", is(request.capacidadePessoas())))
@@ -87,21 +92,21 @@ public class CreateRestauranteControllerTest {
     }
 
     @Test
-    public void testNotFoundEspecialidadeInCreateRestaurante() throws Exception {
+    public void testNotFoundRestauranteInUpdateRestaurante() throws Exception {
         RequestCreateRestauranteDTO request = RestauranteTestUtils.getDefaultRequestCreateRestauranteDTO(0L);
 
-        mockMvc.perform(post("/create-restaurante")
+        mockMvc.perform(put("/update-restaurante/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.message").value("CreateRestaurante: identificador da especialidade não encontrado"));
+                .andExpect(jsonPath("$.message").value("UpdateRestaurante: identificador da especialidade não existe"));
     }
 
     @Test
-    public void testInvalidParamCreateRestaurante() throws Exception {
-        RequestCreateRestauranteDTO request = RestauranteTestUtils.getDefaultInvalidRequestCreateRestauranteDTO();
+    public void testInvalidParamUpdateRestaurante() throws Exception {
+        var request = RestauranteTestUtils.getDefaultInvalidRequestUpdateRestauranteDTO();
 
-        mockMvc.perform(post("/create-restaurante")
+        mockMvc.perform(put("/update-restaurante/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())

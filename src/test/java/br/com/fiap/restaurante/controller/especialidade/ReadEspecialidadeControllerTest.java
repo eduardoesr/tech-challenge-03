@@ -2,6 +2,7 @@ package br.com.fiap.restaurante.controller.especialidade;
 
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
+import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,13 +38,7 @@ public class ReadEspecialidadeControllerTest {
 
     @Test
     void testReadEspecialidade() throws Exception {
-        Especialidade especialidade = new Especialidade(
-                "Especialidade Descricao",
-                "Especialiade",
-                null
-        );
-
-        especialidade = repository.save(especialidade);
+        var especialidade = repository.save(EspecialidadeTestUtils.getDefaultEspecialidade());
 
         mockMvc.perform(get("/especialidade/{id}", especialidade.getId()))
                 .andExpect(status().isOk())
@@ -61,24 +56,11 @@ public class ReadEspecialidadeControllerTest {
 
     @Test
     void testReadAllEspecialidade() throws Exception {
-        repository.save(new Especialidade(
-                "Especialidade Descricao 1",
-                "Especialiade",
-                null
-        ));
-        repository.save(new Especialidade(
-                "Especialidade Descricao 2",
-                "Especialiade",
-                null
-        ));
-        repository.save(new Especialidade(
-                "Especialidade Descricao 3",
-                "Especialiade",
-                null
-        ));
+        repository.save(EspecialidadeTestUtils.getDefaultEspecialidade());
+        repository.save(EspecialidadeTestUtils.getDefaultEspecialidade());
 
         mockMvc.perform(get("/especialidade"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content.length()").value(3));
+                .andExpect(jsonPath("$.content.length()").value(2));
     }
 }

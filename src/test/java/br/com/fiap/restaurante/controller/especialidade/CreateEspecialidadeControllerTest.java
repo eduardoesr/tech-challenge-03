@@ -2,6 +2,7 @@ package br.com.fiap.restaurante.controller.especialidade;
 
 import br.com.fiap.restaurante.dto.especialidade.RequestCreateEspecialidadeDTO;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
+import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,10 +43,7 @@ public class CreateEspecialidadeControllerTest {
     @Test
     void testCreateEspecialidade() throws Exception {
 
-        RequestCreateEspecialidadeDTO request = new RequestCreateEspecialidadeDTO(
-                "Pizza",
-                "Pizza de Calabresa"
-        );
+        RequestCreateEspecialidadeDTO request = EspecialidadeTestUtils.getDefaultRequestCreateEspecialidadeDTO();
 
         mockMvc.perform(post("/create-especialidade")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -60,10 +58,7 @@ public class CreateEspecialidadeControllerTest {
 
     @Test
     void testInvalidParamCreateEspecialidade() throws Exception {
-        RequestCreateEspecialidadeDTO request = new RequestCreateEspecialidadeDTO(
-            "",
-            ""
-        );
+        RequestCreateEspecialidadeDTO request = EspecialidadeTestUtils.getDefaultInvalidRequestCreateEspecialidadeDTO();
 
         mockMvc.perform(post("/create-especialidade")
                         .contentType(MediaType.APPLICATION_JSON)

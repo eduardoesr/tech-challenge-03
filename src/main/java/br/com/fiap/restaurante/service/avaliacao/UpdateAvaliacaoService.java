@@ -28,7 +28,7 @@ public class UpdateAvaliacaoService extends AvaliacaoService {
             especialidade.setDataUpdate(LocalDateTime.now());
             return toAvaliacaoDTO(repository.save(especialidade));
         } catch (EntityNotFoundException e) {
-            throw new NotFoundServiceError("UpdateEspecialidade: identificador da especialidade não encontrada");
+            throw new NotFoundServiceError("UpdateAvaliacao: identificador da avaliacao não encontrada");
         }
     }
 }

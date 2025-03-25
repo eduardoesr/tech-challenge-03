@@ -3,6 +3,7 @@ package br.com.fiap.restaurante.controller.especialidade;
 
 import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
+import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,11 +41,7 @@ class DeleteEspecialidadeControllerTest {
     @Test
     void testDeleteEspecialidade() throws Exception {
         //Insere um item antes de deleta-lo
-        var especialidade = repository.save(new Especialidade(
-            "test",
-            "Especialidade Test",
-            null
-        ));
+        var especialidade = repository.save(EspecialidadeTestUtils.getDefaultEspecialidade());
 
         mockMvc.perform(delete("/delete-especialidade/{id}", especialidade.getId()))
                 .andExpect(status().isNoContent());
