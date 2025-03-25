@@ -19,9 +19,7 @@ public class StreamLambdaHandler implements RequestStreamHandler {
         try {
             handler = SpringBootLambdaContainerHandler.getAwsProxyHandler(RestauranteApplication.class);
         } catch (ContainerInitializationException e) {
-            // if we fail here. We re-throw the exception to force another cold start
-            e.printStackTrace();
-            throw new LambdaError("Could not initialize Spring Boot application", e);
+            throw new LambdaError(e.toString());
         }
     }
 
