@@ -8,7 +8,7 @@
 - Banco de dados
 - Fluxo principal
 - API
-- Testes
+- Qualidade de software
 
 ***
 
