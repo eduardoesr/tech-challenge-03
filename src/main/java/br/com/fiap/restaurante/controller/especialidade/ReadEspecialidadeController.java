@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/especialidade")
-@Tag(name="Especialidade", description="Endpoints que modificão a entidade Especialidade")
+@Tag(name="Especialidade", description="Endpoints que modificam a entidade Especialidade")
 public class ReadEspecialidadeController {
 
     final ReadEspecialidadeService service;
@@ -24,8 +24,8 @@ public class ReadEspecialidadeController {
 
     @GetMapping
     @Operation(
-        summary = "Lista todos os restaurantes",
-        description = "Exibe uma lista de restaurante"
+        summary = "Lista todas as especialidades",
+        description = "Exibe uma lista de especialidades"
     )
     public ResponseEntity<Page<EspecialidadeDTO>> findAll(
             @PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable
@@ -35,8 +35,8 @@ public class ReadEspecialidadeController {
 
     @GetMapping("/{id}")
     @Operation(
-            summary = "Lista um restaurante e suas dependencias",
-            description = "Exibe informações sobre um restaurante"
+            summary = "Lista uma especialidade e suas dependencias",
+            description = "Exibe informações sobre uma especialidade"
     )
     public ResponseEntity<EspecialidadeDTO> findById(@NotNull @PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/delete-especialidade")
-@Tag(name="Especialidade", description="Endpoints que modificão a entidade Especialidade")
+@Tag(name="Especialidade", description="Endpoints que modificam a entidade Especialidade")
 public class DeleteEspecialidadeController {
 
     final DeleteEspecialidadeService service;

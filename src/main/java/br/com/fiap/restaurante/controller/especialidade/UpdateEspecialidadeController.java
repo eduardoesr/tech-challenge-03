@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/update-especialidade")
-@Tag(name="Especialidade", description="Endpoints que modificão a entidade Especialidade")
+@Tag(name="Especialidade", description="Endpoints que modificam a entidade Especialidade")
 public class UpdateEspecialidadeController {
 
     final UpdateEspecialidadeService service;

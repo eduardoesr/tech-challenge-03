@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/create-avaliacao")
-@Tag(name="Avaliacao", description="Endpoints que modificão a entidade Avaliacao")
+@Tag(name="Avaliacao", description="Endpoints que modificam a entidade Avaliacao")
 public class CreateAvaliacaoController {
 
     final CreateAvaliacaoService service;

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/delete-avaliacao")
-@Tag(name="Avaliacao", description="Endpoints que modificão a entidade Avaliacao")
+@Tag(name="Avaliacao", description="Endpoints que modificam a entidade Avaliacao")
 public class DeleteAvaliacaoController {
 
     final DeleteAvaliacaoService service;
