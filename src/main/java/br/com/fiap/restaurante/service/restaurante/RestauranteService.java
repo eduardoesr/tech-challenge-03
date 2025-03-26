@@ -31,8 +31,7 @@ public abstract class RestauranteService {
                 restaurante.getEnderecoCompleto(),
                 restaurante.getHorarioAbertura(),
                 restaurante.getHorarioFechamento(),
-                restaurante.getDiasFuncionamento(),
-                restaurante.getTolerancia()
+                restaurante.getDiasFuncionamento()
         );
     }
 }

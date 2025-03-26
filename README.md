@@ -58,7 +58,7 @@ Todos os endpoints listados no tópico de API são acessíveis neste link. Por e
 Neste caso em específico, por se tratar de um endpoint GET, pode ser acessado diretamente pela URL:
 
 <div align="center">
-    <img src="src/main/resources/img/aws2.png" width="501px" height="386px">
+    <img src="src/main/resources/img/aws2.png" width="501px" height="365px">
 </div>
 
 ***
@@ -80,7 +80,7 @@ O Swagger pode ser acessado diretamente em `http://localhost:8080/swagger-ui/ind
 
 
 <div align="center">
-    <img src="src/main/resources/img/db.png" width="486px" height="334px">
+    <img src="src/main/resources/img/db.png" width="614px" height="294px">
 </div>
 
 ***
@@ -116,11 +116,9 @@ Exemplo de envio:
   "horarioFechamento": "23:00:00",
   "diasFuncionamentos": [
     "SEG"
-  ],
-  "tolerancia": "00:15:00"
+  ]
 }
  ```
-Observação: A tolerância se trata de um atraso máximo sem que haja cancelamento da reserva.
 
 ### Cadastrar avaliação `POST /create-avaliacao`
 Exemplo de envio:

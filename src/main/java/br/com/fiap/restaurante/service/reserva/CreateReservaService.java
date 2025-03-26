@@ -63,11 +63,6 @@ public class CreateReservaService extends ReservaService {
             throw new CreateReservaValidationError("CreateReserva: A reserva deve ser em horário de serviço do restaurante.");
         }
 
-        Duration tempoExcedido = Duration.between(reservaDTO.dataReserva(), LocalDateTime.now());
-        if (tempoExcedido.toMinutes() > restaurante.getTolerancia().toSecondOfDay() / 60) {
-            throw new CreateReservaValidationError("CreateReserva: O tempo de tolerância para a reserva foi excedido.");
-        }
-
         Reserva reserva = toEntity(reservaDTO);
         reserva.setRestaurante(restaurante);
         return toReservaDTO(reservaRepository.save(reserva));

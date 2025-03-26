@@ -39,7 +39,6 @@ public class UpdateRestauranteService extends RestauranteService {
             restaurante.setHorarioAbertura(restauranteDTO.horarioAbertura());
             restaurante.setHorarioFechamento(restauranteDTO.horarioFechamento());
             restaurante.setDiasFuncionamento(restauranteDTO.diasFuncionamentos());
-            restaurante.setTolerancia(restauranteDTO.tolerancia());
             return toRestauranteDTO(repository.save(restaurante));
         } catch (EntityNotFoundException e) {
             throw new NotFoundServiceError("UpdateRestaurante: identificador do restaurante não encontrado");

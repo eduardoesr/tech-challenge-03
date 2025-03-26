@@ -47,7 +47,6 @@ public class CreateRestauranteService extends RestauranteService {
                 restauranteDTO.enderecoCompleto(),
                 restauranteDTO.horarioAbertura(),
                 restauranteDTO.horarioFechamento(),
-                restauranteDTO.tolerancia(),
                 restauranteDTO.diasFuncionamentos()
         );
     }

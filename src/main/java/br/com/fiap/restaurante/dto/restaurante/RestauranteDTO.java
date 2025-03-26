@@ -20,7 +20,6 @@ public record RestauranteDTO(
         String enderecoCompleto,
         LocalTime horarioAbertura,
         LocalTime horarioFechamento,
-        Set<DiasFuncionamento> diasFuncionamentos,
-        LocalTime tolerancia
+        Set<DiasFuncionamento> diasFuncionamentos
 ) {
 }
