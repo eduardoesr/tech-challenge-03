@@ -234,7 +234,7 @@ Foi realizado teste integrados em todos os endpoints da API, buscando alcançar 
 
 ### Inspeção de código
 
-Foi utilizado o Sonar para inspecionar o código e se eliminou a maioria dos apontamentos. Houve apenas um restantante, que não consideramos que prejudicava a qualidade do código:
+Foi utilizado o Sonar para inspecionar o código e se eliminou a maioria dos apontamentos. Houve apenas um restaurante, que não consideramos que prejudicava a qualidade do código:
 
 <div align="center">
     <img src="src/main/resources/img/sonar.png" width="605px" height="181px">
