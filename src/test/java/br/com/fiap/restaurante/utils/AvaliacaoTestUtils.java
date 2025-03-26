@@ -43,6 +43,15 @@ public class AvaliacaoTestUtils {
         );
     }
 
+    public static RequestCreateAvaliacaoDTO getDefaultRequestCreateAvaliacaoClienteAnonimoDTO(Long id) {
+        return new RequestCreateAvaliacaoDTO(
+                id,
+                "comentario",
+                "",
+                ValorAvaliacao.BOM
+        );
+    }
+
     public static RequestCreateAvaliacaoDTO getDefaultInvalidRequestCreateAvaliacaoDTO() {
         return new RequestCreateAvaliacaoDTO(
             null,

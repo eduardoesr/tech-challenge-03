@@ -8,6 +8,7 @@
 - Banco de dados
 - Fluxo principal
 - API
+- Testes
 
 ***
 
@@ -218,3 +219,23 @@ O endpoint de finalizar considera o momento da finalização como a data de saí
 | DELETE | /delete-restaurante/{id} | Deleta um restaurante.       |
 
 Observação: Os endpoints GET de um restaurante não mostram apenas o ID, mas sim todos os detalhes da especialidade, avaliações e reservas daquele restaurante.
+
+***
+
+## Qualidade de software
+
+### Testes
+
+Foi realizado teste integrados em todos os endpoints da API, buscando alcançar aproximadamente 100% de cobertura, principalmente em service, model e controller:
+
+<div align="center">
+    <img src="src/main/resources/img/testes.png" width="763px" height="542px">
+</div>
+
+### Inspeção de código
+
+Foi utilizado o Sonar para inspecionar o código e se eliminou a maioria dos apontamentos. Houve apenas um restantante, que não consideramos que prejudicava a qualidade do código:
+
+<div align="center">
+    <img src="src/main/resources/img/sonar.png" width="605px" height="181px">
+</div>

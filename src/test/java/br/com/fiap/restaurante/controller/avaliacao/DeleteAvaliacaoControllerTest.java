@@ -2,9 +2,7 @@ package br.com.fiap.restaurante.controller.avaliacao;
 
 
 import br.com.fiap.restaurante.repository.AvaliacaoRepository;
-import br.com.fiap.restaurante.repository.RestauranteRepository;
 import br.com.fiap.restaurante.utils.AvaliacaoTestUtils;
-import br.com.fiap.restaurante.utils.RestauranteTestUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

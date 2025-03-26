@@ -59,16 +59,8 @@ public class Avaliacao {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Restaurante getRestaurante() {
         return restaurante;
-    }
-
-    public void setRestaurante(Restaurante restaurante) {
-        this.restaurante = restaurante;
     }
 
     public String getComentario() {
@@ -83,16 +75,8 @@ public class Avaliacao {
         return nomeCliente;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
     }
 
     public ValorAvaliacao getValorAvaliacao() {

@@ -1,6 +1,7 @@
 package br.com.fiap.restaurante.controller.exception;
 
 import br.com.fiap.restaurante.error.StandardError;
+import br.com.fiap.restaurante.error.service.CreateReservaValidationError;
 import br.com.fiap.restaurante.error.service.NotFoundServiceError;
 import br.com.fiap.restaurante.error.validation.ValidateError;
 import io.swagger.v3.oas.annotations.Hidden;
@@ -16,7 +17,7 @@ import java.time.Instant;
 
 @Hidden
 @RestControllerAdvice
-public class ControllerExceptionHendler {
+public class ControllerExceptionHandler {
     private StandardError err = new StandardError();
 
     @ExceptionHandler(NotFoundServiceError.class)
@@ -28,6 +29,21 @@ public class ControllerExceptionHendler {
         err.setTimeInstant(Instant.now());
         err.setStatus(status.value());
         err.setError("Entity not found");
+        err.setMessage(e.getMessage());
+        err.setPath(req.getRequestURI());
+
+        return ResponseEntity.status(status).body(this.err);
+    }
+
+    @ExceptionHandler(CreateReservaValidationError.class)
+    public ResponseEntity<StandardError> entityNotFound(
+            CreateReservaValidationError e,
+            HttpServletRequest req
+    ) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        err.setTimeInstant(Instant.now());
+        err.setStatus(status.value());
+        err.setError("Erro de validação");
         err.setMessage(e.getMessage());
         err.setPath(req.getRequestURI());
 

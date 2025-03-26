@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test") // Usa o perfil de teste (application-test.properties)
 @Transactional
-public class CreateAvaliacaoControllerTest {
+class CreateAvaliacaoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -42,12 +42,12 @@ public class CreateAvaliacaoControllerTest {
     }
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         restauranteRepository.deleteAll();
     }
 
     @Test
-    public void testCreateAvaliacao() throws Exception {
+    void testCreateAvaliacao() throws Exception {
         var restaurante = restauranteRepository.save(RestauranteTestUtils.getDefaultRestaurante());
 
         var request = AvaliacaoTestUtils.getDefaultRequestCreateAvaliacaoDTO(restaurante.getId());
@@ -67,7 +67,28 @@ public class CreateAvaliacaoControllerTest {
     }
 
     @Test
-    public void testNotFoundRestauranteInCreateAvaliacao() throws Exception {
+    void testCreateAvaliacaoWithEmptyNomeCliente() throws Exception {
+        var restaurante = restauranteRepository.save(RestauranteTestUtils.getDefaultRestaurante());
+
+        // Create a request with an empty "nomeCliente"
+        var request = AvaliacaoTestUtils.getDefaultRequestCreateAvaliacaoClienteAnonimoDTO(restaurante.getId());
+
+        mockMvc.perform(post("/create-avaliacao")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isCreated()) // Verifica se o status é 201 Created
+                .andExpect(jsonPath("$.nomeCliente", is("Anônimo"))) // Verifica se o nomeCliente foi alterado para "Anônimo"
+                .andExpect(jsonPath("$.dataCriacao").isNotEmpty())
+                .andExpect(jsonPath("$.restauranteId", is(request.restauranteId().intValue())))
+                .andExpect(jsonPath("$.valorAvaliacao", is(request.valorAvaliacao().toString())))
+                .andExpect(jsonPath("$.comentario", is(request.comentario())));
+
+        // Verifica se o restaurante foi salvo no banco de dados
+        assertThat(restauranteRepository.count()).isEqualTo(1);
+    }
+
+    @Test
+    void testNotFoundRestauranteInCreateAvaliacao() throws Exception {
         var request = AvaliacaoTestUtils.getDefaultRequestCreateAvaliacaoDTO(1L);
 
         mockMvc.perform(post("/create-avaliacao")
@@ -78,7 +99,7 @@ public class CreateAvaliacaoControllerTest {
     }
 
     @Test
-    public void testInvalidParamCreateAvaliacao() throws Exception {
+    void testInvalidParamCreateAvaliacao() throws Exception {
         var request = AvaliacaoTestUtils.getDefaultInvalidRequestCreateAvaliacaoDTO();
 
         mockMvc.perform(post("/create-avaliacao")

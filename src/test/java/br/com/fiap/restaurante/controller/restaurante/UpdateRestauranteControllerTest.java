@@ -1,8 +1,6 @@
 package br.com.fiap.restaurante.controller.restaurante;
 
-import br.com.fiap.restaurante.dto.especialidade.RequestUpdateEspecialidadeDTO;
 import br.com.fiap.restaurante.dto.restaurante.RequestCreateRestauranteDTO;
-import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
 import br.com.fiap.restaurante.repository.RestauranteRepository;
 import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
@@ -24,7 +22,6 @@ import java.time.temporal.ChronoUnit;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -33,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test") // Usa o perfil de teste (application-test.properties)
 @Transactional
-public class UpdateRestauranteControllerTest {
+class UpdateRestauranteControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -56,14 +53,14 @@ public class UpdateRestauranteControllerTest {
     }
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         especialidadeRepository.deleteAll();
         repository.deleteAll();
         this.especialidadeId = especialidadeRepository.save(EspecialidadeTestUtils.getDefaultEspecialidade()).getId();
     }
 
     @Test
-    public void testUpdateRestaurante() throws Exception {
+    void testUpdateRestaurante() throws Exception {
 
         var request = RestauranteTestUtils.getDefaultRequestUpdateRestauranteDTO(this.especialidadeId);
 
@@ -84,15 +81,14 @@ public class UpdateRestauranteControllerTest {
                 .andExpect(jsonPath("$.enderecoCompleto", is(request.enderecoCompleto())))
                 .andExpect(jsonPath("$.horarioAbertura", containsString(request.horarioAbertura().truncatedTo(ChronoUnit.MILLIS).toString())))//Adicionando truncatedTo para ligar com problemas de precisão em comparação
                 .andExpect(jsonPath("$.horarioFechamento", containsString(request.horarioFechamento().truncatedTo(ChronoUnit.MILLIS).toString())))
-                .andExpect(jsonPath("$.diasFuncionamentos.length()", is(request.diasFuncionamentos().size())))
-                .andExpect(jsonPath("$.tolerancia", containsString(request.tolerancia().truncatedTo(ChronoUnit.MILLIS).toString())));
+                .andExpect(jsonPath("$.diasFuncionamentos.length()", is(request.diasFuncionamentos().size())));
 
         // Verifica se a especialidade foi salva no banco de dados
         assertThat(repository.count()).isEqualTo(1);
     }
 
     @Test
-    public void testNotFoundRestauranteInUpdateRestaurante() throws Exception {
+    void testNotFoundEspecialidadeInUpdateRestaurante() throws Exception {
         RequestCreateRestauranteDTO request = RestauranteTestUtils.getDefaultRequestCreateRestauranteDTO(0L);
 
         mockMvc.perform(put("/update-restaurante/{id}", 1L)
@@ -103,14 +99,25 @@ public class UpdateRestauranteControllerTest {
     }
 
     @Test
-    public void testInvalidParamUpdateRestaurante() throws Exception {
+    void testNotFoundRestauranteInUpdateRestaurante() throws Exception {
+        RequestCreateRestauranteDTO request = RestauranteTestUtils.getDefaultRequestCreateRestauranteDTO(especialidadeId);
+
+        mockMvc.perform(put("/update-restaurante/{id}", 999L)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message").value("UpdateRestaurante: identificador do restaurante não encontrado"));
+    }
+
+    @Test
+    void testInvalidParamUpdateRestaurante() throws Exception {
         var request = RestauranteTestUtils.getDefaultInvalidRequestUpdateRestauranteDTO();
 
         mockMvc.perform(put("/update-restaurante/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.messages.length()").value(10))
+                .andExpect(jsonPath("$.messages.length()").value(9))
                 .andExpect(
                         jsonPath("$.messages[*].campo")
                                 .value(
@@ -123,8 +130,7 @@ public class UpdateRestauranteControllerTest {
                                                 "enderecoCompleto",
                                                 "horarioAbertura",
                                                 "horarioFechamento",
-                                                "diasFuncionamentos",
-                                                "tolerancia"
+                                                "diasFuncionamentos"
                                         )
                                 ));
     }

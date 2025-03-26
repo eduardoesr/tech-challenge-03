@@ -5,8 +5,6 @@ import br.com.fiap.restaurante.error.service.NotFoundServiceError;
 import br.com.fiap.restaurante.model.Avaliacao;
 import br.com.fiap.restaurante.repository.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,10 +20,5 @@ public class ReadAvaliacaoService extends AvaliacaoService {
                 .findById(id)
                 .orElseThrow(() -> new NotFoundServiceError("ReadEspecialidade: identificador não encontrado"));
         return toAvaliacaoDTO(especialidade);
-    }
-
-    public Page<AvaliacaoDTO> findAll(Pageable pageable) {
-        Page<Avaliacao> avaliacoes = repository.findAll(pageable);
-        return avaliacoes.map(AvaliacaoService::toAvaliacaoDTO);
     }
 }

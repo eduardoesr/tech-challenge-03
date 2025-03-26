@@ -2,7 +2,6 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.3'
 	id 'io.spring.dependency-management' version '1.1.7'
-	id 'io.gatling.gradle' version '3.13.5.1'
 }
 
 group = 'br.com.fiap'
@@ -32,8 +31,6 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'com.amazonaws.serverless:aws-serverless-java-container-springboot3:2.1.2'
 	implementation 'org.postgresql:postgresql'
-	testImplementation 'io.gatling:gatling-app:3.9.5'
-	testImplementation 'io.gatling.highcharts:gatling-charts-highcharts:3.9.5'
 }
 
 test {

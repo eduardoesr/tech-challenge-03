@@ -27,8 +27,6 @@ public record RequestUpdateRestauranteDTO (
         @NotNull
         LocalTime horarioFechamento,
         @NotNull
-        Set<DiasFuncionamento> diasFuncionamentos,
-        @NotNull
-        LocalTime tolerancia
+        Set<DiasFuncionamento> diasFuncionamentos
 ){
 }

@@ -37,18 +37,6 @@ public class Especialidade {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Set<Restaurante> getRestaurantes() {
-        return restaurantes;
-    }
-
-    public void setRestaurantes(Set<Restaurante> restaurantes) {
-        this.restaurantes = restaurantes;
-    }
-
     public String getNome() {
         return nome;
     }

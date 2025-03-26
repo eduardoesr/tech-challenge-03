@@ -89,24 +89,12 @@ public class Restaurante {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Set<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
 
-    public void setAvaliacoes(Set<Avaliacao> avaliacoes) {
-        this.avaliacoes = avaliacoes;
-    }
-
     public Set<Reserva> getReservas() {
         return reservas;
-    }
-
-    public void setReservas(Set<Reserva> reservas) {
-        this.reservas = reservas;
     }
 
     public Especialidade getEspecialidade() {

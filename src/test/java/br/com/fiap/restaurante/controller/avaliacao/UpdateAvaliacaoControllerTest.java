@@ -1,11 +1,7 @@
 package br.com.fiap.restaurante.controller.avaliacao;
 
-import br.com.fiap.restaurante.dto.restaurante.RequestCreateRestauranteDTO;
 import br.com.fiap.restaurante.repository.AvaliacaoRepository;
-import br.com.fiap.restaurante.repository.EspecialidadeRepository;
-import br.com.fiap.restaurante.repository.RestauranteRepository;
 import br.com.fiap.restaurante.utils.AvaliacaoTestUtils;
-import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
 import br.com.fiap.restaurante.utils.RestauranteTestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
@@ -19,8 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.temporal.ChronoUnit;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -31,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test") // Usa o perfil de teste (application-test.properties)
 @Transactional
-public class UpdateAvaliacaoControllerTest {
+class UpdateAvaliacaoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -48,12 +42,12 @@ public class UpdateAvaliacaoControllerTest {
     }
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         repository.deleteAll();
     }
 
     @Test
-    public void testUpdateAvaliacao() throws Exception {
+    void testUpdateAvaliacao() throws Exception {
         var avaliacao = repository.save(AvaliacaoTestUtils.getDefaultAvaliacao(
                 RestauranteTestUtils.getDefaultRestaurante()
         ));
@@ -65,14 +59,14 @@ public class UpdateAvaliacaoControllerTest {
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(jsonPath("$.dataUpdate").isNotEmpty())
                 .andExpect(jsonPath("$.valorAvaliacao", is(request.valorAvaliacao().toString())))
-                .andExpect(jsonPath("$.comentario", is(request.comentario())));;
+                .andExpect(jsonPath("$.comentario", is(request.comentario())));
 
         // Verifica se a especialidade foi salva no banco de dados
         assertThat(repository.count()).isEqualTo(1);
     }
 
     @Test
-    public void testNotFoundAvaliacaoInUpdateAvaliacao() throws Exception {
+    void testNotFoundAvaliacaoInUpdateAvaliacao() throws Exception {
         var request = AvaliacaoTestUtils.getDefaultRequestUpdateAvaliacaoDTO();
 
         mockMvc.perform(put("/update-avaliacao/{id}", 1L)
@@ -83,7 +77,7 @@ public class UpdateAvaliacaoControllerTest {
     }
 
     @Test
-    public void testInvalidParamCreateRestaurante() throws Exception {
+    void testInvalidParamCreateRestaurante() throws Exception {
         var request = AvaliacaoTestUtils.getDefaultInvalidRequestUpdateAvaliacaoDTO();
 
         mockMvc.perform(put("/update-avaliacao/{id}", 1L)

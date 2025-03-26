@@ -1,16 +1,13 @@
 package br.com.fiap.restaurante.controller.especialidade;
 
-import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
 import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,7 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class ReadEspecialidadeControllerTest {
+class ReadEspecialidadeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

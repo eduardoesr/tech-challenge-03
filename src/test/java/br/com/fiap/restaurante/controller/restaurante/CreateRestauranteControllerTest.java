@@ -1,8 +1,6 @@
 package br.com.fiap.restaurante.controller.restaurante;
 
-import br.com.fiap.restaurante.dto.especialidade.RequestCreateEspecialidadeDTO;
 import br.com.fiap.restaurante.dto.restaurante.RequestCreateRestauranteDTO;
-import br.com.fiap.restaurante.model.Especialidade;
 import br.com.fiap.restaurante.repository.EspecialidadeRepository;
 import br.com.fiap.restaurante.repository.RestauranteRepository;
 import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
@@ -19,9 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -33,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test") // Usa o perfil de teste (application-test.properties)
 @Transactional
-public class CreateRestauranteControllerTest {
+class CreateRestauranteControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -56,14 +52,14 @@ public class CreateRestauranteControllerTest {
     }
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         especialidadeRepository.deleteAll();
         repository.deleteAll();
         this.especialidadeId = especialidadeRepository.save(EspecialidadeTestUtils.getDefaultEspecialidade()).getId();
     }
 
     @Test
-    public void testCreateRestaurante() throws Exception {
+    void testCreateRestaurante() throws Exception {
 
         RequestCreateRestauranteDTO request = RestauranteTestUtils.getDefaultRequestCreateRestauranteDTO(this.especialidadeId);
 
@@ -79,15 +75,14 @@ public class CreateRestauranteControllerTest {
                 .andExpect(jsonPath("$.enderecoCompleto", is(request.enderecoCompleto())))
                 .andExpect(jsonPath("$.horarioAbertura", containsString(request.horarioAbertura().truncatedTo(ChronoUnit.MILLIS).toString())))//Adicionando truncatedTo para ligar com problemas de precisão em comparação
                 .andExpect(jsonPath("$.horarioFechamento", containsString(request.horarioFechamento().truncatedTo(ChronoUnit.MILLIS).toString())))
-                .andExpect(jsonPath("$.diasFuncionamentos.length()", is(request.diasFuncionamentos().size())))
-                .andExpect(jsonPath("$.tolerancia", containsString(request.tolerancia().truncatedTo(ChronoUnit.MILLIS).toString())));
+                .andExpect(jsonPath("$.diasFuncionamentos.length()", is(request.diasFuncionamentos().size())));
 
         // Verifica se a especialidade foi salva no banco de dados
         assertThat(repository.count()).isEqualTo(1);
     }
 
     @Test
-    public void testNotFoundEspecialidadeInCreateRestaurante() throws Exception {
+    void testNotFoundEspecialidadeInCreateRestaurante() throws Exception {
         RequestCreateRestauranteDTO request = RestauranteTestUtils.getDefaultRequestCreateRestauranteDTO(0L);
 
         mockMvc.perform(post("/create-restaurante")
@@ -98,14 +93,14 @@ public class CreateRestauranteControllerTest {
     }
 
     @Test
-    public void testInvalidParamCreateRestaurante() throws Exception {
+    void testInvalidParamCreateRestaurante() throws Exception {
         RequestCreateRestauranteDTO request = RestauranteTestUtils.getDefaultInvalidRequestCreateRestauranteDTO();
 
         mockMvc.perform(post("/create-restaurante")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.messages.length()").value(10))
+                .andExpect(jsonPath("$.messages.length()").value(9))
                 .andExpect(
                         jsonPath("$.messages[*].campo")
                                 .value(
@@ -118,8 +113,7 @@ public class CreateRestauranteControllerTest {
                                                 "enderecoCompleto",
                                                 "horarioAbertura",
                                                 "horarioFechamento",
-                                                "diasFuncionamentos",
-                                                "tolerancia"
+                                                "diasFuncionamentos"
                                         )
                                 ));
     }

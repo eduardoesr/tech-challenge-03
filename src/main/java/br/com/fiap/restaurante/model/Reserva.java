@@ -53,10 +53,6 @@ public class Reserva {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Restaurante getRestaurante() {
         return restaurante;
     }

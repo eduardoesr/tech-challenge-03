@@ -5,7 +5,6 @@ import br.com.fiap.restaurante.repository.EspecialidadeRepository;
 import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,7 +23,7 @@ import static org.hamcrest.Matchers.is;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @ActiveProfiles("test") // Usa o perfil de teste (application-test.properties)
-public class CreateEspecialidadeControllerTest {
+class CreateEspecialidadeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

@@ -19,7 +19,6 @@ public class RestauranteTestUtils {
                 "endereco",
                 LocalTime.now(),
                 LocalTime.now(),
-                LocalTime.now(),
                 Set.of()
         );
     }
@@ -32,7 +31,6 @@ public class RestauranteTestUtils {
                 null,
                 null,
                 "",
-                null,
                 null,
                 null,
                 null
@@ -49,7 +47,6 @@ public class RestauranteTestUtils {
                 "",
                 null,
                 null,
-                null,
                 null
         );
     }
@@ -64,8 +61,7 @@ public class RestauranteTestUtils {
                 "endereco",
                 LocalTime.now(),
                 LocalTime.now(),
-                Set.of(),
-                LocalTime.now()
+                Set.of()
         );
     }
 
@@ -79,8 +75,7 @@ public class RestauranteTestUtils {
                 "endereco",
                 LocalTime.now(),
                 LocalTime.now(),
-                Set.of(),
-                LocalTime.now()
+                Set.of()
         );
     }
 }

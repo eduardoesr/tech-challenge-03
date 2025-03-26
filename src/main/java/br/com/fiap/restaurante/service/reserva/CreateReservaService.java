@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.EnumMap;
 import java.util.Map;
 

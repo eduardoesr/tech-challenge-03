@@ -9,8 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ReadRestauranteService extends RestauranteService {
 
@@ -23,7 +21,7 @@ public class ReadRestauranteService extends RestauranteService {
 
     public RestauranteDTO findById(Long id) {
         Restaurante restaurante = repository.findById(id).orElseThrow(
-                () -> new NotFoundServiceError("ReadResturante: identificador não encontrado"));
+                () -> new NotFoundServiceError("ReadRestaurante: identificador não encontrado"));
         return toRestauranteDTO(restaurante);
     }
 

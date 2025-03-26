@@ -1,14 +1,10 @@
 package br.com.fiap.restaurante.controller.avaliacao;
 
 import br.com.fiap.restaurante.repository.AvaliacaoRepository;
-import br.com.fiap.restaurante.repository.EspecialidadeRepository;
-import br.com.fiap.restaurante.repository.RestauranteRepository;
 import br.com.fiap.restaurante.utils.AvaliacaoTestUtils;
-import br.com.fiap.restaurante.utils.EspecialidadeTestUtils;
 import br.com.fiap.restaurante.utils.RestauranteTestUtils;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -28,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional
-public class ReadAvaliacaoControllerTest {
+class ReadAvaliacaoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

@@ -32,12 +32,12 @@ public class ReadReservaService extends ReservaService {
     }
 
     public ReservaDTO findById(Long id) {
-        Reserva reservas = reservaRepository.findById(id).orElseThrow(() -> new NotFoundServiceError("ReadResturante: identificador reserva não encontrado "));
+        Reserva reservas = reservaRepository.findById(id).orElseThrow(() -> new NotFoundServiceError("ReadReserva: Reserva não encontrada"));
         return toReservaDTO(reservas);
     }
 
     public List<ReservaDTO> findAllByRestauranteId(Long id) {
-        Restaurante restaurante = restauranteRepository.findById(id).orElseThrow(() -> new NotFoundServiceError("ReadResturante: identificador restaurante não encontrado"));
+        Restaurante restaurante = restauranteRepository.findById(id).orElseThrow(() -> new NotFoundServiceError("ReadReserva: Restaurante não encontrado"));
         Set<Reserva> reservas = restaurante.getReservas();
         return reservas.stream().map(ReservaService::toReservaDTO).toList();
     }

@@ -31,7 +31,7 @@ public class CreateAvaliacaoService extends AvaliacaoService {
                 .findById(createDTO.restauranteId())
                 .orElseThrow(() -> new NotFoundServiceError("CreateAvaliacaoService: identificador restaurante não econtrado"));
 
-        if(createDTO.nomeCliente().isEmpty()) {
+        if (createDTO.nomeCliente().isEmpty()) {
             createDTO = new RequestCreateAvaliacaoDTO(
                     createDTO.restauranteId(),
                     createDTO.comentario(),
