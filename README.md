@@ -62,6 +62,8 @@ Neste caso em específico, por se tratar de um endpoint GET, pode ser acessado d
     <img src="src/main/resources/img/aws2.png" width="501px" height="365px">
 </div>
 
+A API já possui especialidade, restaurante, reserva e avaliação cadastrados.
+
 ***
 
 ## Instalação
